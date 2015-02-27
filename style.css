@@ -166,7 +166,7 @@ h1
 		line-height:			56px;
 		text-align:				center;
 		font-family:			"Fire of Ysgard";
-		font-weight:			bold;
+		font-weight:			normal;
 		transition:				ease 1s;
 		transition-property:	color, background-color, border-color, box-shadow;
 		border-bottom-width:	3px;
