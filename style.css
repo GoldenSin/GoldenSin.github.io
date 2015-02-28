@@ -428,7 +428,7 @@ header > nav > a
 		padding:		4px 0;
 		border-width:	1px 0;
 		border-style:	solid;
-		width:			384px;
+		width:			448px;
 		margin:			10px auto 4px;
 	}
 
@@ -460,6 +460,7 @@ nav#social a:hover	{transform: scale(1,1);}
 #steam				{background-color: rgba(  0,   0,   0, 1); background-position:    0   -60px;}
 #twitter			{background-color: rgba(  0, 172, 237, 1); background-position:  -60px -60px;}
 #wordpress			{background-color: rgba( 33, 117, 155, 1); background-position: -120px -60px;}
+#github				{background-color: rgba( 65, 131, 196, 1); background-position: -180px -60px;}
 
 #soundcloud:hover	{background-color: rgba(255, 102,   0, 0.8);}
 #googleplus:hover	{background-color: rgba(209,  72,  54, 0.8);}
@@ -467,6 +468,7 @@ nav#social a:hover	{transform: scale(1,1);}
 #steam:hover		{background-color: rgba(  0,   0,   0, 0.8);}
 #twitter:hover		{background-color: rgba(  0, 172, 237, 0.8);}
 #wordpress:hover	{background-color: rgba( 33, 117, 155, 0.8);}
+#github:hover		{background-color: rgba( 65, 131, 196, 0.8);}
 
 #fright a			{transform: scale(0.5,0.5); margin: 0; border-radius: 6px; border-style: solid; border-width: 4px; margin: -4px -8px; box-shadow: 0 0 5px #000000; transition-property: transform;}
 #fright a:hover		{transform: scale(0.8,0.8);}
