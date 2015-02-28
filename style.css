@@ -47,7 +47,11 @@
 @font-face
 	{
 		font-family:	"Fire of Ysgard";
-		src:			url("fonts/Fire_of_Ysgard.ttf");
+		src:			url("fonts/Fire_of_Ysgard/Fire_of_Ysgard.eot");
+		src:			url("fonts/Fire_of_Ysgard/Fire_of_Ysgard.otf");
+		src:			url("fonts/Fire_of_Ysgard/Fire_of_Ysgard.svg");
+		src:			url("fonts/Fire_of_Ysgard/Fire_of_Ysgard.ttf");
+		src:			url("fonts/Fire_of_Ysgard/Fire_of_Ysgard.woff");
 	}
 
 
