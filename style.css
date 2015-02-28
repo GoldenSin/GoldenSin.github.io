@@ -260,6 +260,7 @@ body
 
 
 @media screen and (min-width: 960px) {
+	body {min-height: 101vh;}
 	canvas
 		{
 			z-index:		-1;
