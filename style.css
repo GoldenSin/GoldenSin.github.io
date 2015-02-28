@@ -225,6 +225,7 @@ figure
 		border-style:	solid;
 		padding:		1px;
 		margin:			7px;
+		transition:		inherit;
 	}
 
 figcaption
