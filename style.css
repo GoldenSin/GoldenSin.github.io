@@ -16,7 +16,7 @@
 
 	/* Oletuskieli fi */
 
-[lang="en"]:not(:root):not(.cv) {display: none;}
+body [lang="en"]:not(.cv) {display: none;}
 
 
 
