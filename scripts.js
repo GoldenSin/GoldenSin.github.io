@@ -44,7 +44,7 @@ $("#math").ready(function(){					// Kun MathJax on latautunut, niin...
 	$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu näkyväksi (koska oletuksena se ei ole sitä)
 });
 
-$(document).ready(function(){		// Kun sivu on latautunut, suoritetaan seuraavat asiat
+$(document).ready(function() {		// Kun sivu on latautunut, suoritetaan seuraavat asiat
 
 	setTimeout(headB(), 200);						// Headerin elementtien leveytys
 
@@ -69,8 +69,23 @@ $(document).ready(function(){		// Kun sivu on latautunut, suoritetaan seuraavat 
 	$("#this").append(window.location.hostname + window.location.pathname);	// Elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa
 	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;	// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
 	$("#validhtml").attr("href", url1);										// Validator-linkkielementin href-attribuutti on yllä mainittu url
+
+
+	/* Figure-elementtien marginaali */
 	
-	
+	for (i = 0; i < $("figure").length; i++) {
+		if ($("figure").eq(i).css("float") == "left") {
+			$("figure").eq(i).css("margin-left", "0");
+		}
+		else if ($("figure").eq(i).css("float") == "right") {
+			$("figure").eq(i).css("margin-right", "0");
+		}
+		else {
+			$("figure").eq(i).css({"margin-left": "0", "margin-right": "0"});
+		}
+	}
+
+
 
 
 

@@ -219,6 +219,26 @@ p > a, p > a:link, p > a:visited
 		text-decoration: underline;
 	}
 
+figure
+	{
+		border-width:	1px;
+		border-style:	solid;
+		padding:		1px;
+		margin:			7px;
+	}
+
+figcaption
+	{
+		border-style:	solid;
+		border-width:	1px 0 0;
+		border-color:	inherit;
+		padding-top:	3px;
+		margin:			0 10px;
+		text-align:		center;
+		font-style:		italic;
+		font-size:		90%;
+	}
+
 img
 	{
 		user-select:			none;
@@ -489,7 +509,7 @@ nav#social a:hover	{transform: scale(1,1);}
 	}
 .theme1 header, .theme1 footer {background-color: rgba(25,5,1,0.8); border-color: #190501; color: #C23030;}
 .theme1 header > h1 {color: #9E0200; border-color: #9E0200;}
-.theme1 h2, .theme1 #social {border-color: #190501;}
+.theme1 h2, .theme1 #social, .theme1 figure {border-color: #190501;}
 body.theme1 {background-color: #9E0200; color: #190501;}
 .theme1 a, .theme1 a:link, .theme1 a:visited
 	{
@@ -515,7 +535,7 @@ body.theme1 {background-color: #9E0200; color: #190501;}
 	}
 .theme2 header, .theme2 footer {background-color: rgba(239,239,239,0.8); border-color: #EFEFEF; color: #2F6B35;}
 .theme2 header > h1 {color: #24563B; border-color: #24563B;}
-.theme2 h2 .theme2 #social {border-color: #EFEFEF;}
+.theme2 h2, .theme2 #social, .theme2 figure {border-color: #EFEFEF;}
 body.theme2 {background-color: #24563B; color: #EFEFEF;}
 .theme2 a, .theme2 a:link, .theme2 a:visited
 	{
@@ -541,7 +561,7 @@ body.theme2 {background-color: #24563B; color: #EFEFEF;}
 	}
 .theme3 header, .theme3 footer {background-color: rgba(255,194,0,0.8); border-color: #FFC200; color: #890000;}
 .theme3 header > h1 {color: #211E19; border-color: #211E19;}
-.theme3 h2 .theme3 #social {border-color: #FFC200;}
+.theme3 h2, .theme3 #social, .theme3 figure {border-color: #FFC200;}
 body.theme3 {background-color: #211E19; color: #FFC200;}
 .theme3 a, .theme3 a:link, .theme3 a:visited
 	{
@@ -567,7 +587,7 @@ body.theme3 {background-color: #211E19; color: #FFC200;}
 	}
 .theme4 header, .theme4 footer {background-color: rgba(0,140,255,0.8); border-color: #008CFF; color: #FFDDAD;}
 .theme4 header > h1 {color: #FF970F; border-color: #FF970F;}
-.theme4 h2 .theme4 #social {border-color: #008CFF;}
+.theme4 h2, .theme4 #social, .theme4 figure {border-color: #008CFF;}
 body.theme4 {background-color: #FF970F; color: #008CFF;}
 .theme4 a, .theme4 a:link, .theme4 a:visited
 	{
@@ -593,7 +613,7 @@ body.theme4 {background-color: #FF970F; color: #008CFF;}
 	}
 .theme5 header, .theme5 footer {background-color: rgba(0,140,255,0.8); border-color: #008CFF; color: #B6C0C0;}
 .theme5 header > h1 {color: #F9F9F9; border-color: #F9F9F9;}
-.theme5 h2 .theme5 #social {border-color: #008CFF;}
+.theme5 h2, .theme5 #social, .theme5 figure {border-color: #008CFF;}
 body.theme5 {background-color: #F9F9F9; color: #008CFF;}
 .theme5 a, .theme5 a:link, .theme5 a:visited
 	{
@@ -618,13 +638,13 @@ body.theme5 {background-color: #F9F9F9; color: #008CFF;}
 	}
 .theme0 header, .theme0 footer {background-color: rgba(0,0,0,0.8); border-color: #000000; color: rgba(255,255,255,0.5);}
 .theme0 header > h1 {color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.5);}
-.theme0 h2 .theme5 #social {border-color: rgba(255,255,255,0.5);}
+.theme0 h2, .theme0 #social, .theme0 figure {border-color: rgba(255,255,255,0.5);}
 body.theme0 {background-color: #000000; color: #000000;}
-.theme0 a, .theme5 a:link, .theme5 a:visited
+.theme0 a, .theme0 a:link, .theme0 a:visited
 	{
 		color:				rgba(255,255,255,0.8);
 	}
-.theme0 a:hover, .theme5 a:active
+.theme0 a:hover, .theme0 a:active
 	{
 		color:				#FFFFFF;
 	}
