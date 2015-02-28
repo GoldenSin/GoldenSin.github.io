@@ -14,7 +14,8 @@ function headB() {																																				// M‰‰ritell‰‰n funktiona,
 		}
 		w += n * ($("header > nav > a:first-child").outerWidth(true) - $("header > nav > a:first-child").innerWidth());											// ... sek‰ marginaalit.
 //		if (x == "fi") {																																		// Mik‰li nappulat ovat suomeksi, suoraan tapahtuu seuraavaa:
-			w *= 1.05; $("h1").width(w); // $("h1, header > nav").width(w);																														// h1:n ja navigaatipalkin leveys on w.
+		if (w <= 640) {w = 640;}
+		w *= 1.05; $("h1").width(w); // $("h1, header > nav").width(w);																														// h1:n ja navigaatipalkin leveys on w.
 //		}
 //		else {																																					// Jos taas englanniksi, niin...
 //			w *= 1.2;																																			// ... kerrotaan ensin 1,2:lla (jotta nappuloita ei mene hetkellisesti v‰‰r‰lle riville), ja sitten vasta:
@@ -29,6 +30,7 @@ function headB() {																																				// M‰‰ritell‰‰n funktiona,
 
 function page(x) {														// Funktio nimelt‰ page...
 	var x;																// ... jonka muuttuja on x
+	$.scrollTo(0);														// Rullaa sivun yl‰reunaan
 	$(".box").fadeOut(800, "linear");									// Laatikot h‰ivyttyv‰t
 	$(".box:nth-child(" + x + ")").delay(600).fadeIn(800, "linear");	// x. laatikko tulee n‰kyv‰ksi
 	$("body").removeClass();											// Bodyn classit pois

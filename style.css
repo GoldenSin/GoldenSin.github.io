@@ -608,6 +608,30 @@ body.theme5 {background-color: #F9F9F9; color: #008CFF;}
 .theme5 ::-moz-selection {color: #B6C0C0; background-color: #008CFF;}
 
 
+	/* Theme 0 */
+.theme0 main > .box
+	{
+		background:		rgba(255,255,255,0.5);
+		border-color:	#FFFFFF;
+		box-shadow:		0 0 3px rgba(255,255,255,0.5) inset, 0 0 5px rgba(255,255,255,0.5);
+	}
+.theme0 header, .theme0 footer {background-color: rgba(0,0,0,0.8); border-color: #000000; color: rgba(255,255,255,0.5);}
+.theme0 header > h1 {color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.5);}
+.theme0 h2 .theme5 #social {border-color: rgba(255,255,255,0.5);}
+body.theme0 {background-color: #000000; color: #000000;}
+.theme0 a, .theme5 a:link, .theme5 a:visited
+	{
+		color:				rgba(255,255,255,0.8);
+	}
+.theme0 a:hover, .theme5 a:active
+	{
+		color:				#FFFFFF;
+	}
+.theme0 header > nav > a {color: rgba(255,255,255,0.5);}
+
+.theme0 ::selection {color: #000000; background-color: rgba(255,255,255,0.5);}
+.theme0 ::-moz-selection {color: #000000; background-color: rgba(255,255,255,0.5);}
+
 
 /* #########
    # Sivut #
