@@ -581,7 +581,7 @@ body.theme3 {background-color: #211E19; color: #FFC200;}
 
 
 	/* Theme 4 */
-
+/*
 .theme4 main > .box, .theme4 figure
 	{
 		background:		#FFDDAD;
@@ -604,10 +604,10 @@ body.theme4 {background-color: #FF970F; color: #008CFF;}
 
 .theme4 ::selection {color: #FFDDAD; background-color: #008CFF;}
 .theme4 ::-moz-selection {color: #FFDDAD; background-color: #008CFF;}
-
+*/
 
 	/* Theme 5 */
-
+/*
 .theme5 main > .box, .theme5 figure
 	{
 		background:		#B6C0C0;
@@ -630,9 +630,9 @@ body.theme5 {background-color: #F9F9F9; color: #008CFF;}
 
 .theme5 ::selection {color: #B6C0C0; background-color: #008CFF;}
 .theme5 ::-moz-selection {color: #B6C0C0; background-color: #008CFF;}
+*/
 
-
-	/* Theme 0 */
+	/* Theme 4 */
 .theme4 main > .box, .theme4 figure
 	{
 		background:		rgba(255,255,255,0.5);
@@ -655,6 +655,31 @@ body.theme4 {background-color: #000000; color: #000000;}
 
 .theme4 ::selection {color: #000000; background-color: rgba(255,255,255,0.5);}
 .theme4 ::-moz-selection {color: #000000; background-color: rgba(255,255,255,0.5);}
+
+
+	/* Theme 4 */
+.theme5 main > .box, .theme5 figure
+	{
+		background:		rgba(0,0,0,0.5);
+		border-color:	#000000;
+		box-shadow:		0 0 3px rgba(0,0,0,0.5) inset, 0 0 5px rgba(0,0,0,0.5);
+	}
+.theme5 header, .theme5 footer {background-color: rgba(255,255,255,0.8); border-color: #FFFFFF; color: rgba(0,0,0,0.5);}
+.theme5 header > h1 {color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.5);}
+.theme5 h2, .theme5 #social {border-color: rgba(0,0,0,0.5);}
+body.theme5 {background-color: #FFFFFF; color: #FFFFFF;}
+.theme5 a, .theme5 a:link, .theme5 a:visited
+	{
+		color:				rgba(0,0,0,0.8);
+	}
+.theme5 a:hover, .theme5 a:active
+	{
+		color:				#000000;
+	}
+.theme5 header > nav > a {color: rgba(0,0,0,0.5);}
+
+.theme5 ::selection {color: #FFFFFF; background-color: rgba(0,0,0,0.5);}
+.theme5 ::-moz-selection {color: #FFFFFF; background-color: rgba(0,0,0,0.5);}
 
 
 /* #########
