@@ -322,8 +322,9 @@ body
 	main
 		{
 			width:		960px;
-			margin:		100px auto;
+			margin:		100px calc(50% - 480px);
 			z-index:	1;
+			float: left;
 		}
 	.box
 		{
