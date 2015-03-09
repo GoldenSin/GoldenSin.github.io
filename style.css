@@ -322,7 +322,7 @@ body
 	main
 		{
 			width:		960px;
-			margin:		100px auto 0;
+			margin:		100px auto;
 			z-index:	1;
 		}
 	.box
