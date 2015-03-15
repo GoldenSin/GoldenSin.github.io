@@ -38,15 +38,17 @@ function page(x) {														// Funktio nimeltä page...
 }
 
 
-/* Matematiikkaa sisältävien elementtien näkyminen */
-
-$("#math").ready(function(){					// Kun MathJax on latautunut, niin...
-	$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu näkyväksi (koska oletuksena se ei ole sitä)
-});
-
 $(document).ready(function() {		// Kun sivu on latautunut, suoritetaan seuraavat asiat
 
 	setTimeout(headB(), 200);						// Headerin elementtien leveytys
+
+
+	/* Matematiikkaa sisältävien elementtien näkyminen */
+
+	$("#math").ready(function(){					// Kun MathJax on latautunut, niin...
+		$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu näkyväksi (koska oletuksena se ei ole sitä)
+	});
+
 
 	/* Kieli */
 	
@@ -66,9 +68,13 @@ $(document).ready(function() {		// Kun sivu on latautunut, suoritetaan seuraavat
 
 	/* Portfolion url */
 
-	$("#this").append(window.location.hostname + window.location.pathname);	// Elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa
-	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;	// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
-	$("#validhtml").attr("href", url1);										// Validator-linkkielementin href-attribuutti on yllä mainittu url
+	if(window.location.pathname != "/") {											// Mikäli kansio, jossa sivu sijaitsee, ei ole juuri, niin...
+		$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa, ja...
+	} else {																		// ... mikäli se on, niin...
+		$("#this").append(window.location.hostname);								// ... "this" saa sisällön, jossa on pelkkä domain.
+	}
+	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
+	$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yllä mainittu url
 
 
 	/* Figure-elementtien marginaali */
