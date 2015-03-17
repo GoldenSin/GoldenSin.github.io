@@ -2,9 +2,9 @@
    %% Portfolio-sivun tyylit (CSS) %%
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-/* ###########
-   # Nollaus #
-   ########### */
+/* ##############################
+   # Nollaus ja muu formatointi #
+   ############################## */
 
 *
 	{
@@ -317,6 +317,7 @@ body
 	header > nav > a
 		{
 /*			float: left;*/
+			word-break: keep-all;
 		}
 
 	main
@@ -403,7 +404,7 @@ body
 		}
 	header > nav
 		{
-			font-family:	"Feira da Fruta";
+			font-variant:	small-caps;
 			text-align:		center;
 			line-height:	40px;
 			font-size:		120%;

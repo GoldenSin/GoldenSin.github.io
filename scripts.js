@@ -2,74 +2,90 @@
    %% Portfolio-sivun skriptit (JavaScript/jQuery) %%
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-/************************************************************************************************
- * Jos ruudun leveys on riitt‰v‰n suuri, p‰‰otsikon leveys on sama kuin navigaatiopalkin leveys */
+/************************
+ * Globaaleja muuttujia */
 
-function headB() {																																				// M‰‰ritell‰‰n funktiona, koska suoritus useammassa paikassa
+var today = new Date();									// T√§m√§n p√§iv√§n p√§iv√§m√§√§r√§ on muuttuja "today".
+
+
+
+/************************************************************************************************
+ * Jos ruudun leveys on riitt√§v√§n suuri, p√§√§otsikon leveys on sama kuin navigaatiopalkin leveys */
+
+function headB() {																																				// M√§√§ritell√§√§n funktiona, koska suoritus useammassa paikassa
 	if (screen.width >= 960 && window.innerWidth >= 960) {																										// Ruudun leveys taikka ikkunan leveys
 		if ($(":root").attr("lang") == "fi") {var x = "fi";} else {var x = "en";}																				// Jos suomi, niin suomi. Muulloin englanti. Problem?
-		var n = $("header > nav > a").length;																													// n on navigaatiolinkkien m‰‰r‰
-		var w = 0;																																				// w on h1:n ja navigaatiopalkin lopullinen leveys, joka l‰htee nollasta...
+		var n = $("header > nav > a").length;																													// n on navigaatiolinkkien m√§√§r√§
+		var w = 0;																																				// w on h1:n ja navigaatiopalkin lopullinen leveys, joka l√§htee nollasta...
 		for (i = 1; i <= n; i++) {
-			w += $("header > nav > a:nth-child(" + i + ") > span[lang='" + x + "'], header > nav > a:nth-child(" + i + ") > span[lang='la']").outerWidth(true);	// ... ja johon lis‰t‰‰n jokaisen navigaatiolinkin (sen hetkisen sis‰llˆn) (ulko)leveys (i k‰y 1:st‰ n:‰‰n)...
+			w += $("header > nav > a:nth-child(" + i + ") > span[lang='" + x + "'], header > nav > a:nth-child(" + i + ") > span[lang='la']").outerWidth(true);	// ... ja johon lis√§t√§√§n jokaisen navigaatiolinkin (sen hetkisen sis√§ll√∂n) (ulko)leveys (i k√§y 1:st√§ n:√§√§n)...
 		}
-		w += n * ($("header > nav > a:first-child").outerWidth(true) - $("header > nav > a:first-child").innerWidth());											// ... sek‰ marginaalit.
-//		if (x == "fi") {																																		// Mik‰li nappulat ovat suomeksi, suoraan tapahtuu seuraavaa:
+		w += n * ($("header > nav > a:first-child").outerWidth(true) - $("header > nav > a:first-child").innerWidth());											// ... sek√§ marginaalit.
+//		if (x == "fi") {																																		// Mik√§li nappulat ovat suomeksi, suoraan tapahtuu seuraavaa:
 		if (w <= 640) {w = 640;}
 		w *= 1.05; $("h1").width(w); // $("h1, header > nav").width(w);																														// h1:n ja navigaatipalkin leveys on w.
 //		}
 //		else {																																					// Jos taas englanniksi, niin...
-//			w *= 1.2;																																			// ... kerrotaan ensin 1,2:lla (jotta nappuloita ei mene hetkellisesti v‰‰r‰lle riville), ja sitten vasta:
+//			w *= 1.2;																																			// ... kerrotaan ensin 1,2:lla (jotta nappuloita ei mene hetkellisesti v√§√§r√§lle riville), ja sitten vasta:
 //			$("h1, header > nav").width(w);																														// h1:n ja navigaatipalkin leveys on w
-//			setTimeout(function(){w /= 1.2; $("h1, header > nav").width(w)}, 200)																				// Sitten viel‰ perutaan 1,2:lla kertominen.
+//			setTimeout(function(){w /= 1.2; $("h1, header > nav").width(w)}, 200)																				// Sitten viel√§ perutaan 1,2:lla kertominen.
 //		}
 	} else {$("h1, header > nav").css("width", "100%");}																										// Jos ruudun tai ikkunan leveys on pienempi kuin 960 px, niin h1:n ja navigaatiopalkin leveys on 100 %.
 }
 
 
+
 /****************************
  * Sivunvaihdot (funktiona) */
 
-function page(x) {														// Funktio nimelt‰ page...
+function page(x) {														// Funktio nimelt√§ page...
 	var x;																// ... jonka muuttuja on x
-	$.scrollTo(0);														// Rullaa sivun yl‰reunaan
-	$(".box").fadeOut(800, "linear");									// Laatikot h‰ivyttyv‰t
-	$(".box:nth-child(" + x + ")").delay(600).fadeIn(800, "linear");	// x. laatikko tulee n‰kyv‰ksi
+	$.scrollTo(0);														// Rullaa sivun yl√§reunaan
+	$(".box").fadeOut(800, "linear");									// Laatikot h√§ivyttyv√§t
+	$(".box:nth-child(" + x + ")").delay(600).fadeIn(800, "linear");	// x. laatikko tulee n√§kyv√§ksi
 	$("body").removeClass();											// Bodyn classit pois
 	$("body").addClass("theme" + x);									// Teemaksi x. teema (bodyn classiksi)
 }
 
 
+
 /******************************************
- * Viimeksi muokattu (p‰iv‰m‰‰r‰ ja aika) */
+ * Viimeksi muokattu (p√§iv√§m√§√§r√§ ja aika) */
 
-var today = new Date();
-var latest = new Date(document.lastModified);
+var latest = new Date(document.lastModified);			// Viimeksi muokattu p√§iv√§m√§√§r√§ on muuttuja "latest".
 
-var latestTimeFi = latest.getHours() + "." + latest.getMinutes();
-var latestTimeEn;
-	if (latest.getHours() > 12) {
-		latestTimeEn = latest.getHours() - 12 + ":" + latest.getMinutes() + " PM";
-	} else {
-		latestTimeEn = latest.getHours() + ":" + latest.getMinutes() + " AM";
+// M√§√§ritell√§√§n kellonajan muotoilut:
+var latestTimeFi;										// Suomalainen aikamuoto on nyt asia.
+var latestTimeEn;										// Englanninkielinen aikamuoto on my√∂s asia.
+	var min = latest.getMinutes();						// latestin minuutit tallennettu muuttujaan
+	var h = latest.getHours();							// Samoin sen tunnit
+	if (min < 10) {										// Jos kello on v√§hemm√§n kuin kymmenen yli, niin...
+		min = "0" + min;								// ... minuuttien edess√§ on nolla. Vrt. 9.05 vs. 9.5 (eng. 9:05 vs. 9:5)
+	}
+	latestTimeFi = h + "." + min;						// latestTimeFi on suomalainen aikamuoto. Eli h.mm
+	if (h > 12) {										// Mik√§li kello on enemm√§n kuin kaksitoista p√§iv√§ll√§, niin...
+		latestTimeEn = (h - 12) + ":" + min + " PM";	// ... otetaan 12 tunnin kello 24 tunnin kellon sijaan (eli v√§hennet√§√§n 24 tunnin ajasta 12, jolloin saadaan oikea aika). Ja PM per√§√§n (koska iltap√§iv√§).
+	} else {											// Muulloin...
+		latestTimeEn = h + ":" + min + " AM";			// ... ei v√§hennet√§ mit√§√§n kellonajasta, koska aamulla se on sama kuin 24 tunnin kellossa. AM per√§√§n (koska aamu).
 	}
 
-var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();
-var latestDateEn;
-	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	var m = months[latest.getMonth()] + " ";
-	var d = latest.getDate();
-	if (d == 1 || d == 21 || d == 31) {
-		d = d + "<sup>st</sup> ";
-	} else if (d == 2 || d == 22) {
-		d = d + "<sup>nd</sup> ";
-	} else if (d == 3 || d == 23) {
-		d = d + "<sup>rd</sup> ";
-	} else {
-		d = d + "<sup>th</sup> ";
-	}
-	latestDateEn =  m + d + latest.getFullYear();
-// Implementointi, kun sivu ladataan. Selaa alasp‰in.
+// Ja aika on valmis. Nyt p√§iv√§ys:
+var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();			// Suomalainen p√§iv√§ysmuoto (joka on helppo). Nimitt√§in "d.m.yyyy".
+var latestDateEn;																							// Englannin vastaava on olemassa, mutta sen m√§√§r√§√§minen onkin hankalampaa.
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]	// Kuukausi-array, jossa i. alkio on i+1:nnen kuukauden nimi kaikilla i = 0, 1, ..., 11.
+	latestDateEn = "on " + months[latest.getMonth()] + " " + latest.getDate() + ", " + latest.getFullYear();		// Nyt englanninkielinen p√§iv√§m√§√§r√§ on "kuukaudennimi d, yyyy". Esimerkiksi November 5, 1605.
+
+var latestAsMs = latest.valueOf() - latest.getMilliseconds() - 1000 * (latest.getSeconds() - 60 * (latest.getMinutes() - 60 * latest.getHours()));
+var todayAsMs = today.valueOf() - today.getMilliseconds() - 1000 * (today.getSeconds() - 60 * (today.getMinutes() - 60 * today.getHours()));
+if (todayAsMs - latestAsMs == 0) {
+	latestDateFi = "t√§n√§√§n";
+	latestDateEn = "today";
+} else if (todayAsMs - latestAsMs == 1) {
+	latestDateFi = "eilen";
+	latestDateEn = "yesterday";
+}
+// Implementointi, kun sivu ladataan. Selaa alasp√§in.
+
 
 
 /*******************************************************
@@ -82,20 +98,20 @@ $(document).ready(function() {
 	})
 
 
-	/* Matematiikkaa sis‰lt‰vien elementtien n‰kyminen */
+	/* Matematiikkaa sis√§lt√§vien elementtien n√§kyminen */
 
 	$("#math").ready(function(){					// Kun MathJax on latautunut, niin...
-		$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu n‰kyv‰ksi (koska oletuksena se ei ole sit‰)
+		$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu n√§kyv√§ksi (koska oletuksena se ei ole sit√§)
 	});
 
 
 	/* Kieli */
 	
-	$("#finnish").click(function() {													// Jos klikataan suomilinkki‰
+	$("#finnish").click(function() {													// Jos klikataan suomilinkki√§
 		$(":root").attr("lang", "fi");													// Juurielementin (<html>) kieleksi suomi
-		headB();																		// Lis‰ksi suoritetaan headB()
+		headB();																		// Lis√§ksi suoritetaan headB()
 		$("[lang='en']:not(:root, .cv), [lang='la']").fadeOut(200, "linear");						// Kaikki englanninkieliset elementit piiloon (paitsi juuri itse ja CV-linkit)
-		$("[lang='fi']:not(:root, .cv), [lang='la']").delay(180).fadeIn(200, "linear");				// Kaikki suomenkieliset elementit n‰kyviin (paitsi nuo kaksi poikkeusta)
+		$("[lang='fi']:not(:root, .cv), [lang='la']").delay(180).fadeIn(200, "linear");				// Kaikki suomenkieliset elementit n√§kyviin (paitsi nuo kaksi poikkeusta)
 	});
 	$("#english").click(function() {													// Sama englanniksi
 		$(":root").attr("lang", "en");
@@ -118,9 +134,29 @@ $(document).ready(function() {
 			$("figure").eq(i).css({"margin-left": "0", "margin-right": "0"});
 		}
 	}
+	
+	
+	/* Mik√§li figure on leve√§mpi kuin sen container */
+	
+	$("figure").each(function(){												// Jokaiselle figurelle oma funktionsa.
+		if($(this).outerWidth(true) >= $(this).parent().width()) {				// Jos figure on leve√§mpi kuin containerinsa, niin...
+			var quot = $(this).parent().width() / $(this).outerWidth();		// ... lasketaan, miten iso osa container on figuresta.
+			var diff = $(this).outerWidth() - $(this).parent().width();		// Ja samoin figuren ja containerin leveyksien erotus.
+			diff /= 2;
+			$(this).css({
+				"transform": "scale(" + quot + "," + quot + ")",				// Ja sitten skaaalataan sit√§ figurea, niin, ett√§ sen leveys on se containerin leveys. :3
+				"margin": "0 0 0 -" + diff + "px",											// ... ja sitten marginaalit uusiksi.
+			});
+		}
+	});
 
 
-	/* Sivun viimeisin p‰ivitysaika esille etusivulle */
+	/* Copyrightin vuosi */
+	
+	$(".year").append(today.getFullYear());
+
+
+	/* Sivun viimeisin p√§ivitysaika esille etusivulle */
 	
 	$("p[lang='fi'] > .lmdate").append(latestDateFi);
 	$("p[lang='en'] > .lmdate").append(latestDateEn);
@@ -130,22 +166,19 @@ $(document).ready(function() {
 
 	/* Portfolion url */
 
-	if(window.location.pathname != "/") {											// Mik‰li kansio, jossa sivu sijaitsee, ei ole juuri, niin...
-		$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sis‰llˆn, jossa on sivun url ilman protokollaa, ja...
-	} else {																		// ... mik‰li se on, niin...
-		$("#this").append(window.location.hostname);								// ... "this" saa sis‰llˆn, jossa on pelkk‰ domain.
+	if(window.location.pathname != "/") {											// Mik√§li polku, jossa sivu sijaitsee, ei ole juuri, niin...
+		$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sis√§ll√∂n, jossa on sivun url ilman protokollaa, ja...
+	} else {																		// ... mik√§li se on, niin...
+		$("#this").append(window.location.hostname);								// ... "this" saa sis√§ll√∂n, jossa on pelkk√§ domain.
 	}
-	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki t‰h‰n sivuun
-	$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yll‰ mainittu url
+	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki t√§h√§n sivuun
+	$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yll√§ mainittu url
 
 
-
-
-
-	/* Main-elementin korkeus (tarpeeton t‰ll‰ hetkell‰) */
+	/* Main-elementin korkeus (tarpeeton t√§ll√§ hetkell√§) */
 /*
-	var h = [];														// h on tyhj‰ matriisi
-	for (var i = 0; i < 4; i++) {									// i k‰y nollasta kolmeen
+	var h = [];														// h on tyhj√§ array
+	for (var i = 0; i < 4; i++) {									// i k√§y nollasta kolmeen
 		var j = i+1;												// j on yksi plus i (???)
 		h[i] = $(".box:nth-child(" + j + ")").outerHeight();		// h:n i. alkio on j:nnen laatikon ulkoleveys
 	}
@@ -153,7 +186,7 @@ $(document).ready(function() {
 	$("main").height(maxHeight);									// mainin korkeudeksi maxHeight
 */
 
-	/* Sivunvaihdot (toteutettu tehokkaammin alhaalta lˆytyv‰n‰ funktiona) */
+	/* Sivunvaihdot (toteutettu tehokkaammin alhaalta l√∂ytyv√§n√§ funktiona) */
 /*
 	$("#vaihto1").click(function() {
 		$(".box").fadeOut(800, "linear");
