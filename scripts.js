@@ -75,14 +75,15 @@ var latestDateEn;																							// Englannin vastaava on olemassa, mutta
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]	// Kuukausi-array, jossa i. alkio on i+1:nnen kuukauden nimi kaikilla i = 0, 1, ..., 11.
 	latestDateEn = "on " + months[latest.getMonth()] + " " + latest.getDate() + ", " + latest.getFullYear();		// Nyt englanninkielinen päivämäärä on "kuukaudennimi d, yyyy". Esimerkiksi November 5, 1605.
 
-var latestAsMs = latest.valueOf() - (latest.getMilliseconds() + 1000 * (latest.getSeconds() + 60 * (latest.getMinutes() + 60 * latest.getHours())));
-var todayAsMs = today.valueOf() - (today.getMilliseconds() + 1000 * (today.getSeconds() + 60 * (today.getMinutes() + 60 * today.getHours())));
-if (todayAsMs - latestAsMs == 0) {
-	latestDateFi = "tänään";
-	latestDateEn = "today";
-} else if (todayAsMs - latestAsMs == 1) {
-	latestDateFi = "eilen";
-	latestDateEn = "yesterday";
+// Jos viimeksi muokattu tänään, ilmaistaan päivän sijaan "tänään".
+var latestAsMs = latest.valueOf() - (latest.getMilliseconds() + 1000 * (latest.getSeconds() + 60 * (latest.getMinutes() + 60 * latest.getHours())));	// latestAsMs on viimeisen muokkauksen päivämäärä millisekunteina miinus tarkempi kellonaika
+var todayAsMs = today.valueOf() - (today.getMilliseconds() + 1000 * (today.getSeconds() + 60 * (today.getMinutes() + 60 * today.getHours())));			// todayAsMs on sama mutta tälle päivälle
+if (todayAsMs - latestAsMs == 0) {																														// Ja jos niiden erotus on nolla eli ne ovat sama luku, niin...
+	latestDateFi = "tänään";																															// ... suomeksi sanotaan, että "tänään"...
+	latestDateEn = "today";																																// ... ja enkuksi, että "today".
+} else if (todayAsMs - latestAsMs == 1) {																												// Jos niiden erotus on yksi eli tänään on yksi päivä viime muokkauksen jälkeen, niin...
+	latestDateFi = "eilen";																																// ... suomeksi sanotaan, että "eilen"...
+	latestDateEn = "yesterday";																															// ... ja enkuksi, että "yesterday".
 }
 // Implementointi, kun sivu ladataan. Selaa alaspäin.
 
