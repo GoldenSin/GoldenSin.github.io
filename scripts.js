@@ -75,8 +75,8 @@ var latestDateEn;																							// Englannin vastaava on olemassa, mutta
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]	// Kuukausi-array, jossa i. alkio on i+1:nnen kuukauden nimi kaikilla i = 0, 1, ..., 11.
 	latestDateEn = "on " + months[latest.getMonth()] + " " + latest.getDate() + ", " + latest.getFullYear();		// Nyt englanninkielinen päivämäärä on "kuukaudennimi d, yyyy". Esimerkiksi November 5, 1605.
 
-var latestAsMs = latest.valueOf() - latest.getMilliseconds() - 1000 * (latest.getSeconds() - 60 * (latest.getMinutes() - 60 * latest.getHours()));
-var todayAsMs = today.valueOf() - today.getMilliseconds() - 1000 * (today.getSeconds() - 60 * (today.getMinutes() - 60 * today.getHours()));
+var latestAsMs = latest.valueOf() - (latest.getMilliseconds() + 1000 * (latest.getSeconds() + 60 * (latest.getMinutes() + 60 * latest.getHours())));
+var todayAsMs = today.valueOf() - (today.getMilliseconds() + 1000 * (today.getSeconds() + 60 * (today.getMinutes() + 60 * today.getHours())));
 if (todayAsMs - latestAsMs == 0) {
 	latestDateFi = "tänään";
 	latestDateEn = "today";
