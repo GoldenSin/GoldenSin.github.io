@@ -2,7 +2,8 @@
    %% Portfolio-sivun skriptit (JavaScript/jQuery) %%
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-/* Jos ruudun leveys on riittävän suuri, pääotsikon leveys on sama kuin navigaatiopalkin leveys */
+/************************************************************************************************
+ * Jos ruudun leveys on riittävän suuri, pääotsikon leveys on sama kuin navigaatiopalkin leveys */
 
 function headB() {																																				// Määritellään funktiona, koska suoritus useammassa paikassa
 	if (screen.width >= 960 && window.innerWidth >= 960) {																										// Ruudun leveys taikka ikkunan leveys
@@ -26,7 +27,8 @@ function headB() {																																				// Määritellään funktiona,
 }
 
 
-/* Sivunvaihdot (funktiona) */
+/****************************
+ * Sivunvaihdot (funktiona) */
 
 function page(x) {														// Funktio nimeltä page...
 	var x;																// ... jonka muuttuja on x
@@ -38,9 +40,46 @@ function page(x) {														// Funktio nimeltä page...
 }
 
 
-$(document).ready(function() {		// Kun sivu on latautunut, suoritetaan seuraavat asiat
+/******************************************
+ * Viimeksi muokattu (päivämäärä ja aika) */
 
-	setTimeout(headB(), 200);						// Headerin elementtien leveytys
+var today = new Date();
+var latest = new Date(document.lastModified);
+
+var latestTimeFi = latest.getHours() + "." + latest.getMinutes();
+var latestTimeEn;
+	if (latest.getHours() > 12) {
+		latestTimeEn = latest.getHours() - 12 + ":" + latest.getMinutes() + " PM";
+	} else {
+		latestTimeEn = latest.getHours() + ":" + latest.getMinutes() + " AM";
+	}
+
+var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();
+var latestDateEn;
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	var m = months[latest.getMonth()] + " ";
+	var d = latest.getDate();
+	if (d == 1 || d == 21 || d == 31) {
+		d = d + "<sup>st</sup> ";
+	} else if (d == 2 || d == 22) {
+		d = d + "<sup>nd</sup> ";
+	} else if (d == 3 || d == 23) {
+		d = d + "<sup>rd</sup> ";
+	} else {
+		d = d + "<sup>th</sup> ";
+	}
+	latestDateEn =  m + d + latest.getFullYear();
+// Implementointi, kun sivu ladataan. Selaa alaspäin.
+
+
+/*******************************************************
+ * Kun sivu on latautunut, suoritetaan seuraavat asiat */
+
+$(document).ready(function() {
+
+	$("header").ready(function() {
+		setTimeout(headB(), 500);						// Headerin elementtien leveytys
+	})
 
 
 	/* Matematiikkaa sisältävien elementtien näkyminen */
@@ -66,17 +105,6 @@ $(document).ready(function() {		// Kun sivu on latautunut, suoritetaan seuraavat
 	});
 
 
-	/* Portfolion url */
-
-	if(window.location.pathname != "/") {											// Mikäli kansio, jossa sivu sijaitsee, ei ole juuri, niin...
-		$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa, ja...
-	} else {																		// ... mikäli se on, niin...
-		$("#this").append(window.location.hostname);								// ... "this" saa sisällön, jossa on pelkkä domain.
-	}
-	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
-	$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yllä mainittu url
-
-
 	/* Figure-elementtien marginaali */
 	
 	for (i = 0; i < $("figure").length; i++) {
@@ -90,6 +118,25 @@ $(document).ready(function() {		// Kun sivu on latautunut, suoritetaan seuraavat
 			$("figure").eq(i).css({"margin-left": "0", "margin-right": "0"});
 		}
 	}
+
+
+	/* Sivun viimeisin päivitysaika esille etusivulle */
+	
+	$("p[lang='fi'] > .lmdate").append(latestDateFi);
+	$("p[lang='en'] > .lmdate").append(latestDateEn);
+	$("p[lang='fi'] > .lmtime").append(latestTimeFi);
+	$("p[lang='en'] > .lmtime").append(latestTimeEn);
+
+
+	/* Portfolion url */
+
+	if(window.location.pathname != "/") {											// Mikäli kansio, jossa sivu sijaitsee, ei ole juuri, niin...
+		$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa, ja...
+	} else {																		// ... mikäli se on, niin...
+		$("#this").append(window.location.hostname);								// ... "this" saa sisällön, jossa on pelkkä domain.
+	}
+	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
+	$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yllä mainittu url
 
 
 
