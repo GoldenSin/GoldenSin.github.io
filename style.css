@@ -168,31 +168,35 @@ p + ul, p + ol {margin-top: 0;}
 
 h1
 	{
-		font-size:				350%;
-		line-height:			56px;
-		text-align:				center;
-		font-family:			"Fire of Ysgard";
-		font-weight:			normal;
-		transition:				ease 1s;
-		transition-property:	color, background-color, border-color, box-shadow;
-		border-bottom-width:	3px;
-		border-bottom-style:	solid;
-		border-radius:			3px;
-		max-width:				960px;
-		margin:					0 auto 1px;
+		font-size:						350%;
+		line-height:					56px;
+		text-align:						center;
+		font-family:					"Fire of Ysgard";
+		font-weight:					normal;
+		transition:						ease 1s;
+		transition-property:			color, background-color, border-color, box-shadow;
+		-webkit-transition:				ease 1s;
+		-webkit-transition-property:	color, background-color, border-color, box-shadow;
+		border-bottom-width:			3px;
+		border-bottom-style:			solid;
+		border-radius:					3px;
+		max-width:						960px;
+		margin:							0 auto 1px;
 	}
 
 h2
 	{
-		font-family:			"CMU Serif";
-		font-size:				180%;
-		font-weight:			normal;
-		font-variant:			small-caps;
-		font-style:				italic;
-		border-bottom:			2px solid;
-		transition:				ease 1s;
-		transition-property:	color, background-color, border-color, box-shadow;
-		margin:					20px 0 0;
+		font-family:					"CMU Serif";
+		font-size:						180%;
+		font-weight:					normal;
+		font-variant:					small-caps;
+		font-style:						italic;
+		border-bottom:					2px solid;
+		transition:						ease 1s;
+		transition-property:			color, background-color, border-color, box-shadow;
+		-webkit-transition:				ease 1s;
+		-webkit-transition-property:	color, background-color, border-color, box-shadow;
+		margin:							20px 0 0;
 	}
 
 h3
@@ -205,10 +209,12 @@ h3
 
 a, a:link, a:visited
 	{
-		cursor:					pointer;
-		transition:				ease 1s;
-		transition-property:	color, background-color, border-color, box-shadow;
-		text-decoration:		none;
+		cursor:							pointer;
+		transition:						ease 1s;
+		transition-property:			color, background-color, border-color, box-shadow;
+		-webkit-transition:				ease 1s;
+		-webkit-transition-property:	color, background-color, border-color, box-shadow;
+		text-decoration:				none;
 	}
 
 a:hover, a:active
@@ -223,11 +229,12 @@ p > a, p > a:link, p > a:visited
 
 figure
 	{
-		border-width:	1px;
-		border-style:	solid;
-		padding:		1px;
-		margin:			20px 13px 3px;
-		transition:		inherit;
+		border-width:		1px;
+		border-style:		solid;
+		padding:			1px;
+		margin:				20px 13px 3px;
+		transition:			inherit;
+		-webkit-transition:	inherit;
 	}
 
 figcaption
@@ -270,15 +277,17 @@ img
 
 body
 	{
-		font-family:			"CMU Serif", "Times New Roman";
-		background-color:		#9E0200;
-		background-image:		url("bg132.png");
-		background-size:		100%;
-		background-attachment:	fixed;
-		color:					#190501;
-		font-size:				20px;
-		transition:				ease 1s;
-		transition-property:	color, background-color, border-color, box-shadow;
+		font-family:					"CMU Serif", "Times New Roman";
+		background-color:				#9E0200;
+		background-image:				url("bg132.png");
+		background-size:				100%;
+		background-attachment:			fixed;
+		color:							#190501;
+		font-size:						20px;
+		transition:						ease 1s;
+		transition-property:			color, background-color, border-color, box-shadow;
+		-webkit-transition:				ease 1s;
+		-webkit-transition-property:	color, background-color, border-color, box-shadow;
 	}
 
 
@@ -292,13 +301,15 @@ body
 
 	header, footer
 		{
-			width:			100%;
-			position:		fixed;
-			z-index:		10;
-			border-width:	5px 0;
-			border-style:	solid;
-			transition: ease 1s;
-			transition-property: color, background-color, border-color, box-shadow;
+			width:							100%;
+			position:						fixed;
+			z-index:						10;
+			border-width:					5px 0;
+			border-style:					solid;
+			transition:						ease 1s;
+			transition-property:			color, background-color, border-color, box-shadow;
+			-webkit-transition:				ease 1s;
+			-webkit-transition-property:	color, background-color, border-color, box-shadow;
 		}
 	header {top: -5px; height: 100px;} footer {bottom: -5px; height: 100px;}
 	footer {height: 60px;}
@@ -323,9 +334,8 @@ body
 	main
 		{
 			width:		960px;
-			margin:		100px calc(50% - 480px);
+			margin:		100px auto /*calc(50% - 480px)*/;
 			z-index:	1;
-			float: left;
 		}
 	.box
 		{
@@ -334,6 +344,8 @@ body
 			padding: 10px;
 			transition: ease 1s;
 			transition-property: color, background-color, border-color, box-shadow;
+			-webkit-transition: ease 1s;
+			-webkit-transition-property: color, background-color, border-color, box-shadow;
 			min-height:	120px;
 			margin-bottom:	80px;
 			clear: both;
@@ -384,6 +396,8 @@ body
 			float: left;
 		}
 	#fmiddle {width: 20%;} #fleft, #fright {width: 40%;}
+	
+	#bottom {width: 100%; float: left; height: 0; padding: 1px 0 0 0;} /* IE perkele mikset osaa mit‰‰n */
 
 }
 
@@ -447,17 +461,20 @@ nav#social a, #fright a, .cv .dl
 	}
 nav#social a, #fright a
 	{
-		width:					60px;
-		height:					60px;
-		display:				block;
-		float:					left;
-		box-shadow:				0 0 2px #000000;
-		margin:					2px;
-		transition-property:	transform, background;
-		transition-duration:	200ms;
-		transform:				scale(0.9,0.9);
+		width:							60px;
+		height:							60px;
+		display:						block;
+		float:							left;
+		box-shadow:						0 0 2px #000000;
+		margin:							2px;
+		transition-property:			transform, background;
+		transition-duration:			200ms;
+		transform:						scale(0.9,0.9);
+		-webkit-transition-property:	-webkit-transform, background;
+		-webkit-transition-duration:	200ms;
+		-webkit-transform:				scale(0.9,0.9);
 	}
-nav#social a:hover	{transform: scale(1,1);}
+nav#social a:hover	{transform: scale(1,1); -webkit-transform: scale(1,1);}
 
 #soundcloud			{background-color: rgba(255, 102,   0, 1); background-position:    0     0;}
 #googleplus			{background-color: rgba(209,  72,  54, 1); background-position:  -60px   0;}
@@ -475,8 +492,19 @@ nav#social a:hover	{transform: scale(1,1);}
 #wordpress:hover	{background-color: rgba( 33, 117, 155, 0.8);}
 #github:hover		{background-color: rgba( 65, 131, 196, 0.8);}
 
-#fright a			{transform: scale(0.5,0.5); margin: 0; border-radius: 6px; border-style: solid; border-width: 4px; margin: -4px -8px; box-shadow: 0 0 5px #000000; transition-property: transform;}
-#fright a:hover		{transform: scale(0.8,0.8);}
+#fright a
+	{
+		border-radius: 6px;
+		border-style: solid;
+		border-width: 4px;
+		margin: -4px -8px;
+		box-shadow: 0 0 5px #000000;
+		transform: scale(0.5,0.5);
+		transition-property: transform;
+		-webkit-transform: scale(0.5,0.5);
+		-webkit-transition-property: -webkit-transform;
+	}
+#fright a:hover		{transform: scale(0.8,0.8); -webkit-transform: scale(0.8,0.8);}
 #html5				{background-color: rgb(240, 101,  41); border-color: rgb(240, 101,  41); background-position: 0 -120px;}
 #css3				{background-color: rgb(  0, 146, 191); border-color: rgb(  0, 146, 191); background-position: -60px -120px;}
 #jquery				{background-color: rgb(  8, 103, 171); border-color: rgb(  8, 103, 171); background-position: -120px -120px;}
@@ -485,6 +513,7 @@ nav#social a:hover	{transform: scale(1,1);}
 	{
 		background-image: url("flags.png");
 		transform: scale(0.5,0.5);
+		-webkit-transform: scale(0.5,0.5);
 		opacity: 0.7;
 		border-radius: 6px;
 		margin: -4px -12px;
@@ -495,8 +524,10 @@ nav#social a:hover	{transform: scale(1,1);}
 		display: block;
 		transition-duration:	200ms;
 		transition-property: transform, opacity;
+		-webkit-transition-duration:	200ms;
+		-webkit-transition-property: -webkit-transform, opacity;
 		}
-#fleft a:hover		{transform: scale(0.8,0.8); opacity: 1;}
+#fleft a:hover		{transform: scale(0.8,0.8); -webkit-transform: scale(0.8,0.8); opacity: 1;}
 #finnish			{background-position: right top;}
 #english			{background-position: left top;}
 
@@ -731,12 +762,26 @@ body.theme5 {background-color: #FFFFFF; color: #FFFFFF;}
 		height:			64px;
 		transform:		scale(0.9,0.9);
 		transition:		transform 100ms linear;
+		-webkit-transform:		scale(0.9,0.9);
+		-webkit-transition:		-webkit-transform 100ms linear;
 		margin:			5px auto;
 	}
-#validhtml:hover {transform: scale(1,1);}
+#validhtml:hover {transform: scale(1,1); -webkit-transform: scale(1,1);}
 
 .cv {line-height: 60px; margin-top: 20px;}
-.cv .dl {background-position: -180px 0; height: 60px; width: 60px; vertical-align: middle; transform: scale(0.3,0.3); transition: 200ms transform linear; margin-right: -5px; float: left;}
-.cv:hover .dl {transform: scale(0.4,0.4);}
+.cv .dl
+	{
+		background-position: -180px 0;
+		height: 60px;
+		width: 60px;
+		vertical-align: middle;
+		transform: scale(0.3,0.3);
+		transition: 200ms transform linear;
+		-webkit-transform: scale(0.3,0.3);
+		-webkit-transition: 200ms -webkit-transform linear;
+		margin-right: -5px;
+		float: left;
+	}
+.cv:hover .dl {transform: scale(0.4,0.4); -webkit-transform: scale(0.4,0.4);}
 
 .soundcloud {width: 100%; margin: 20px 0 0;}
