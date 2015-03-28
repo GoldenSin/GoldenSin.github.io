@@ -447,7 +447,7 @@ header > nav > a
 		padding:		4px 0;
 		border-width:	1px 0;
 		border-style:	solid;
-		width:			448px;
+		width:			512px;
 		margin:			10px auto 4px;
 	}
 
@@ -483,6 +483,7 @@ nav#social a:hover	{transform: scale(1,1); -webkit-transform: scale(1,1);}
 #twitter			{background-color: rgba(  0, 172, 237, 1); background-position:  -60px -60px;}
 #wordpress			{background-color: rgba( 33, 117, 155, 1); background-position: -120px -60px;}
 #github				{background-color: rgba( 65, 131, 196, 1); background-position: -180px -60px;}
+#facebook			{background-color: rgba( 59,  89, 152, 1); background-position: -180px -120px;}
 
 #soundcloud:hover	{background-color: rgba(255, 102,   0, 0.8);}
 #googleplus:hover	{background-color: rgba(209,  72,  54, 0.8);}
@@ -491,6 +492,7 @@ nav#social a:hover	{transform: scale(1,1); -webkit-transform: scale(1,1);}
 #twitter:hover		{background-color: rgba(  0, 172, 237, 0.8);}
 #wordpress:hover	{background-color: rgba( 33, 117, 155, 0.8);}
 #github:hover		{background-color: rgba( 65, 131, 196, 0.8);}
+#facebook:hover		{background-color: rgba( 50,  89, 152, 0.8);}
 
 #fright a
 	{
@@ -557,7 +559,7 @@ body.theme1 {background-color: #9E0200; color: #190501;}
 	{
 		color:				#AD2206;
 	}
-.theme1 header > nav > a {color: #C23030;}
+.theme1 header > nav > a:link, .theme1 header > nav > a:visited {color: #C23030;}
 
 .theme1 ::selection {color: #C23030; background-color: #190501;}
 .theme1 ::-moz-selection {color: #C23030; background-color: #190501;}
@@ -583,7 +585,7 @@ body.theme2 {background-color: #24563B; color: #EFEFEF;}
 	{
 		color:				#515151;
 	}
-.theme2 header > nav > a {color: #2F6B35;}
+.theme2 header > nav > a:link, .theme2 header > nav > a:visited {color: #2F6B35;}
 
 .theme2 ::selection {color: #2F6B35; background-color: #EFEFEF;}
 .theme2 ::-moz-selection {color: #2F6B35; background-color: #EFEFEF;}
@@ -609,7 +611,7 @@ body.theme3 {background-color: #211E19; color: #FFC200;}
 	{
 		color:				#634800;
 	}
-.theme3 header > nav > a {color: #890000;}
+.theme3 header > nav > a:link, .theme3 header > nav > a:visited {color: #890000;}
 
 .theme3 ::selection {color: #890000; background-color: #211E19;}
 .theme3 ::-moz-selection {color: #890000; background-color: #211E19;}
@@ -686,7 +688,7 @@ body.theme4 {background-color: #000000; color: #000000;}
 	{
 		color:				#FFFFFF;
 	}
-.theme4 header > nav > a {color: rgba(255,255,255,0.5);}
+.theme4 header > nav > a:link, .theme4 header > nav > a:visited {color: rgba(255,255,255,0.5);}
 
 .theme4 ::selection {color: #000000; background-color: rgba(255,255,255,0.5);}
 .theme4 ::-moz-selection {color: #000000; background-color: rgba(255,255,255,0.5);}
@@ -711,7 +713,7 @@ body.theme5 {background-color: #FFFFFF; color: #FFFFFF;}
 	{
 		color:				#000000;
 	}
-.theme5 header > nav > a {color: rgba(0,0,0,0.5);}
+.theme5 header > nav > a:link, .theme5 header > nav > a:visited {color: rgba(0,0,0,0.5);}
 
 .theme5 ::selection {color: #FFFFFF; background-color: rgba(0,0,0,0.5);}
 .theme5 ::-moz-selection {color: #FFFFFF; background-color: rgba(0,0,0,0.5);}

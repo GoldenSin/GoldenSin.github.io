@@ -2,6 +2,8 @@
    %% Portfolio-sivun skriptit (JavaScript/jQuery) %%
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
+$(document).ready(function() {							// Sivun latautuminen, ennen kuin mitään tapahtuu. :3
+
 /************************
  * Globaaleja muuttujia */
 
@@ -17,7 +19,7 @@ function headB() {																																				// Määritellään funkti
 		if ($(":root").attr("lang") == "fi") {var x = "fi";} else {var x = "en";}																				// Jos suomi, niin suomi. Muulloin englanti. Problem?
 		var n = $("header > nav > a").length;																													// n on navigaatiolinkkien määrä
 		var w = 0;																																				// w on h1:n ja navigaatiopalkin lopullinen leveys, joka lähtee nollasta...
-		for (i = 1; i <= n; i++) {
+		for (var i = 1; i <= n; i++) {
 			w += $("header > nav > a:nth-child(" + i + ") > span[lang='" + x + "'], header > nav > a:nth-child(" + i + ") > span[lang='la']").outerWidth(true);	// ... ja johon lisätään jokaisen navigaatiolinkin (sen hetkisen sisällön) (ulko)leveys (i käy 1:stä n:ään)...
 		}
 		w += n * ($("header > nav > a:first-child").outerWidth(true) - $("header > nav > a:first-child").innerWidth());											// ... sekä marginaalit.
@@ -46,6 +48,16 @@ function page(x) {														// Funktio nimeltä page...
 	$("body").removeClass();											// Bodyn classit pois
 	$("body").addClass("theme" + x);									// Teemaksi x. teema (bodyn classiksi)
 }
+
+/* Ja osoitetaan sivut nappeihin */
+var menuNapit = $("body > header nav a");
+menuNapit.each(function(){
+	$(this).click(function(event){
+		event.preventDefault();
+		page($(this).index() + 1);
+	});
+});
+
 
 
 
@@ -89,91 +101,91 @@ if (todayAsMs - latestAsMs == 0) {																														// Ja jos niiden
 
 
 
-/*******************************************************
- * Kun sivu on latautunut, suoritetaan seuraavat asiat */
+/*******************************************************************
+ * Nyt suoritetaan kamaa (kun sivu on latautunut loppuun, kaiketi) */
 
-$(document).ready(function() {
+$("header").ready(function() {
+	setTimeout(headB(), 500);						// Headerin elementtien leveytys
+})
 
-	$("header").ready(function() {
-		setTimeout(headB(), 500);						// Headerin elementtien leveytys
-	})
-
-
-	/* Matematiikkaa sisältävien elementtien näkyminen */
-
-	$("#math").ready(function(){					// Kun MathJax on latautunut, niin...
-		$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu näkyväksi (koska oletuksena se ei ole sitä)
-	});
+$(window).resize(headB());
 
 
-	/* Kieli */
-	
-	$("#finnish").click(function() {													// Jos klikataan suomilinkkiä
-		$(":root").attr("lang", "fi");													// Juurielementin (<html>) kieleksi suomi
-		headB();																		// Lisäksi suoritetaan headB()
-		$("[lang='en']:not(:root, .cv), [lang='la']").fadeOut(200, "linear");						// Kaikki englanninkieliset elementit piiloon (paitsi juuri itse ja CV-linkit)
-		$("[lang='fi']:not(:root, .cv), [lang='la']").delay(180).fadeIn(200, "linear");				// Kaikki suomenkieliset elementit näkyviin (paitsi nuo kaksi poikkeusta)
-	});
-	$("#english").click(function() {													// Sama englanniksi
-		$(":root").attr("lang", "en");
-		headB();
-		$("[lang='fi']:not(:root, .cv), [lang='la']").fadeOut(200, "linear");
-		$("[lang='en']:not(:root, .cv), [lang='la']").delay(180).fadeIn(200, "linear");
-	});
+/* Matematiikkaa sisältävien elementtien näkyminen */
+
+$("#math").ready(function(){					// Kun MathJax on latautunut, niin...
+	$(".kaava").css("visibility", "visible")	// ... kaikki matematiikka muuttuu näkyväksi (koska oletuksena se ei ole sitä)
+});
 
 
-	/* Figure-elementtien marginaali */
-	
-	for (i = 0; i < $("figure").length; i++) {
-		if ($("figure").eq(i).css("float") == "left") {
-			$("figure").eq(i).css("margin-left", "0");
-		}
-		else if ($("figure").eq(i).css("float") == "right") {
-			$("figure").eq(i).css("margin-right", "0");
-		}
-		else {
-			$("figure").eq(i).css({"margin-left": "0", "margin-right": "0"});
-		}
+/* Kieli */
+
+$("#finnish").click(function() {													// Jos klikataan suomilinkkiä
+	$(":root").attr("lang", "fi");													// Juurielementin (<html>) kieleksi suomi
+	headB();																		// Lisäksi suoritetaan headB()
+	$("[lang='en']:not(:root, .cv), [lang='la']").fadeOut(200, "linear");						// Kaikki englanninkieliset elementit piiloon (paitsi juuri itse ja CV-linkit)
+	$("[lang='fi']:not(:root, .cv), [lang='la']").delay(180).fadeIn(200, "linear");				// Kaikki suomenkieliset elementit näkyviin (paitsi nuo kaksi poikkeusta)
+});
+$("#english").click(function() {													// Sama englanniksi
+	$(":root").attr("lang", "en");
+	headB();
+	$("[lang='fi']:not(:root, .cv), [lang='la']").fadeOut(200, "linear");
+	$("[lang='en']:not(:root, .cv), [lang='la']").delay(180).fadeIn(200, "linear");
+});
+
+
+/* Figure-elementtien marginaali */
+
+for (var i = 0; i < $("figure").length; i++) {
+	if ($("figure").eq(i).css("float") == "left") {
+		$("figure").eq(i).css("margin-left", "0");
 	}
-	
-	
-	/* Mikäli figure on leveämpi kuin sen container */
-	
-	$("figure").each(function(){												// Jokaiselle figurelle oma funktionsa.
-		if($(this).outerWidth(true) >= $(this).parent().width()) {				// Jos figure on leveämpi kuin containerinsa, niin...
-			var quot = $(this).parent().width() / $(this).outerWidth();		// ... lasketaan, miten iso osa container on figuresta.
-			var diff = $(this).outerWidth() - $(this).parent().width();		// Ja samoin figuren ja containerin leveyksien erotus.
-			diff /= 2;
-			$(this).css({
-				"transform": "scale(" + quot + "," + quot + ")",				// Ja sitten skaaalataan sitä figurea, niin, että sen leveys on se containerin leveys. :3
-				"margin": "0 0 0 -" + diff + "px",											// ... ja sitten marginaalit uusiksi.
-			});
-		}
-	});
-
-
-	/* Copyrightin vuosi */
-	
-	$(".year").append(today.getFullYear());
-
-
-	/* Sivun viimeisin päivitysaika esille etusivulle */
-	
-	$("p[lang='fi'] > .lmdate").append(latestDateFi);
-	$("p[lang='en'] > .lmdate").append(latestDateEn);
-	$("p[lang='fi'] > .lmtime").append(latestTimeFi);
-	$("p[lang='en'] > .lmtime").append(latestTimeEn);
-
-
-	/* Portfolion url */
-
-	if(window.location.pathname != "/") {											// Mikäli polku, jossa sivu sijaitsee, ei ole juuri, niin...
-		$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa, ja...
-	} else {																		// ... mikäli se on, niin...
-		$("#this").append(window.location.hostname);								// ... "this" saa sisällön, jossa on pelkkä domain.
+	else if ($("figure").eq(i).css("float") == "right") {
+		$("figure").eq(i).css("margin-right", "0");
 	}
-	var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
-	$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yllä mainittu url
+	else {
+		$("figure").eq(i).css({"margin-left": "0", "margin-right": "0"});
+	}
+}
+
+
+/* Mikäli figure on leveämpi kuin sen container */
+
+$("figure").each(function(){												// Jokaiselle figurelle oma funktionsa.
+	if($(this).outerWidth(true) >= $(this).parent().width()) {				// Jos figure on leveämpi kuin containerinsa, niin...
+		var quot = $(this).parent().width() / $(this).outerWidth();		// ... lasketaan, miten iso osa container on figuresta.
+		var diff = $(this).outerWidth() - $(this).parent().width();		// Ja samoin figuren ja containerin leveyksien erotus.
+		diff /= 2;
+		$(this).css({
+			"transform": "scale(" + quot + "," + quot + ")",				// Ja sitten skaaalataan sitä figurea, niin, että sen leveys on se containerin leveys. :3
+			"margin": "0 0 0 -" + diff + "px",											// ... ja sitten marginaalit uusiksi.
+		});
+	}
+});
+
+
+/* Copyrightin vuosi */
+
+$(".year").append(today.getFullYear());
+
+
+/* Sivun viimeisin päivitysaika esille etusivulle */
+
+$("p[lang='fi'] > .lmdate").append(latestDateFi);
+$("p[lang='en'] > .lmdate").append(latestDateEn);
+$("p[lang='fi'] > .lmtime").append(latestTimeFi);
+$("p[lang='en'] > .lmtime").append(latestTimeEn);
+
+
+/* Portfolion url */
+
+if(window.location.pathname != "/") {											// Mikäli polku, jossa sivu sijaitsee, ei ole juuri, niin...
+	$("#this").append(window.location.hostname + window.location.pathname);		// ... elementti, jonka id on "this", saa sisällön, jossa on sivun url ilman protokollaa, ja...
+} else {																		// ... mikäli se on, niin...
+	$("#this").append(window.location.hostname);								// ... "this" saa sisällön, jossa on pelkkä domain.
+}
+var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muuttuja "url1" saa arvon, joka on W3C:n validatorin linkki tähän sivuun
+$("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yllä mainittu url
 
 
 	/* Main-elementin korkeus (tarpeeton tällä hetkellä) */
