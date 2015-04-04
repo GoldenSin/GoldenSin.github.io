@@ -58,7 +58,19 @@ menuNapit.each(function(){
 	});
 });
 
+/* Sivunvaihdot leipätekstissä */
 
+$(".box p a[href=#]").each(function(){
+	$(this).click(function(event){
+		for (var i = 1; i <= $("body > header nav a").length; i++) {
+			event.preventDefault();
+			if ($(this).hasClass(i)) {
+				page(i);
+				console.log(i);
+			}
+		}
+	});
+});
 
 
 /******************************************
