@@ -8,6 +8,52 @@ $(document).ready(function() {							// Sivun latautuminen, ennen kuin mitään 
  * Globaaleja muuttujia */
 
 var today = new Date();									// Tämän päivän päivämäärä on muuttuja "today".
+var latest = new Date(document.lastModified);			// Viimeksi muokattu päivämäärä on muuttuja "latest".
+var menuNapit = $("body > header nav a");				// Menunapit tallennettu muuttujaan.
+
+
+
+/******************************************
+ * Viimeksi muokattu (päivämäärä ja aika) */
+
+// Määritellään kellonajan muotoilut:
+var latestTimeFi;										// Suomalainen aikamuoto on nyt asia.
+var latestTimeEn;										// Englanninkielinen aikamuoto on myös asia.
+	var min = latest.getMinutes();						// latestin minuutit tallennettu muuttujaan
+	var h = latest.getHours();							// Samoin sen tunnit
+	if (min < 10) {										// Jos kello on vähemmän kuin kymmenen yli, niin...
+		min = "0" + min;								// ... minuuttien edessä on nolla. Vrt. 9.05 vs. 9.5 (eng. 9:05 vs. 9:5)
+	}
+	latestTimeFi = h + "." + min;						// latestTimeFi on suomalainen aikamuoto. Eli h.mm
+	if (h > 12) {										// Mikäli kello on enemmän kuin kaksitoista päivällä, niin...
+		latestTimeEn = (h - 12) + ":" + min + " PM";	// ... otetaan 12 tunnin kello 24 tunnin kellon sijaan (eli vähennetään 24 tunnin ajasta 12, jolloin saadaan oikea aika). Ja PM perään (koska iltapäivä).
+	} else {											// Muulloin...
+		latestTimeEn = h + ":" + min + " AM";			// ... ei vähennetä mitään kellonajasta, koska aamulla se on sama kuin 24 tunnin kellossa. AM perään (koska aamu).
+	}
+
+// Ja aika on valmis. Nyt päiväys:
+var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();			// Suomalainen päiväysmuoto (joka on helppo). Nimittäin "d.m.yyyy".
+var latestDateEn;																							// Englannin vastaava on olemassa, mutta sen määrääminen onkin hankalampaa.
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]	// Kuukausi-array, jossa i. alkio on i+1:nnen kuukauden nimi kaikilla i = 0, 1, ..., 11.
+	latestDateEn = "on " + months[latest.getMonth()] + " " + latest.getDate() + ", " + latest.getFullYear();		// Nyt englanninkielinen päivämäärä on "kuukaudennimi d, yyyy". Esimerkiksi November 5, 1605.
+
+// Jos viimeksi muokattu tänään, ilmaistaan päivän sijaan "tänään".
+var latestAsMs = latest.valueOf() - (latest.getMilliseconds() + 1000 * (latest.getSeconds() + 60 * (latest.getMinutes() + 60 * latest.getHours())));	// latestAsMs on viimeisen muokkauksen päivämäärä millisekunteina miinus tarkempi kellonaika
+var todayAsMs = today.valueOf() - (today.getMilliseconds() + 1000 * (today.getSeconds() + 60 * (today.getMinutes() + 60 * today.getHours())));			// todayAsMs on sama mutta tälle päivälle
+if (todayAsMs - latestAsMs == 0) {																														// Ja jos niiden erotus on nolla eli ne ovat sama luku, niin...
+	latestDateFi = "tänään";																															// ... suomeksi sanotaan, että "tänään"...
+	latestDateEn = "today";																																// ... ja enkuksi, että "today".
+} else if (todayAsMs - latestAsMs == 86400000) {																										// Jos niiden erotus on yksi päivä (86400000 millisekuntia) eli tänään on yksi päivä viime muokkauksen jälkeen, niin...
+	latestDateFi = "eilen";																																// ... suomeksi sanotaan, että "eilen"...
+	latestDateEn = "yesterday";																															// ... ja enkuksi, että "yesterday".
+}
+
+/* Sivun viimeisin päivitysaika esille etusivulle */
+
+$("p[lang='fi'] > .lmdate").append(latestDateFi);
+$("p[lang='en'] > .lmdate").append(latestDateEn);
+$("p[lang='fi'] > .lmtime").append(latestTimeFi);
+$("p[lang='en'] > .lmtime").append(latestTimeEn);
 
 
 
@@ -50,77 +96,36 @@ function page(x) {														// Funktio nimeltä page...
 }
 
 /* Ja osoitetaan sivut nappeihin */
-var menuNapit = $("body > header nav a");
-menuNapit.each(function(){
-	$(this).click(function(event){
-		event.preventDefault();
-		page($(this).index() + 1);
+menuNapit.each(function(){												// Jokaiselle oma funktio.
+	$(this).click(function(event){										// Kun nappia klikkaa...
+		event.preventDefault();											// ... niin ensin estetään linkin href...
+		page($(this).index() + 1);										// ... ja sitten siirrytään oikealle sivulle.
 	});
 });
 
 /* Sivunvaihdot leipätekstissä */
 
-$(".box p a[href=#]").each(function(){
-	$(this).click(function(event){
-		for (var i = 1; i <= $("body > header nav a").length; i++) {
-			event.preventDefault();
-			if ($(this).hasClass(i)) {
-				page(i);
-				console.log(i);
+$(".box p a[href=#]").each(function(){									// Jokaiselle linkille, jonka href on #...
+	$(this).click(function(event){										// ... suoritetaan klikattaessa seuraava funktio.
+		for (var i = 1; i <= menuNapit.length; i++) {					// Jokaista menunappia i kohti...
+			event.preventDefault();										// ... (ensin estetään href)...
+			if ($(this).hasClass(i)) {									// ... jos linkillä on class i, niin... 
+				page(i);												// ... siirrytään i:nnelle sivulle.
 			}
 		}
 	});
 });
 
 
-/******************************************
- * Viimeksi muokattu (päivämäärä ja aika) */
 
-var latest = new Date(document.lastModified);			// Viimeksi muokattu päivämäärä on muuttuja "latest".
-
-// Määritellään kellonajan muotoilut:
-var latestTimeFi;										// Suomalainen aikamuoto on nyt asia.
-var latestTimeEn;										// Englanninkielinen aikamuoto on myös asia.
-	var min = latest.getMinutes();						// latestin minuutit tallennettu muuttujaan
-	var h = latest.getHours();							// Samoin sen tunnit
-	if (min < 10) {										// Jos kello on vähemmän kuin kymmenen yli, niin...
-		min = "0" + min;								// ... minuuttien edessä on nolla. Vrt. 9.05 vs. 9.5 (eng. 9:05 vs. 9:5)
-	}
-	latestTimeFi = h + "." + min;						// latestTimeFi on suomalainen aikamuoto. Eli h.mm
-	if (h > 12) {										// Mikäli kello on enemmän kuin kaksitoista päivällä, niin...
-		latestTimeEn = (h - 12) + ":" + min + " PM";	// ... otetaan 12 tunnin kello 24 tunnin kellon sijaan (eli vähennetään 24 tunnin ajasta 12, jolloin saadaan oikea aika). Ja PM perään (koska iltapäivä).
-	} else {											// Muulloin...
-		latestTimeEn = h + ":" + min + " AM";			// ... ei vähennetä mitään kellonajasta, koska aamulla se on sama kuin 24 tunnin kellossa. AM perään (koska aamu).
-	}
-
-// Ja aika on valmis. Nyt päiväys:
-var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();			// Suomalainen päiväysmuoto (joka on helppo). Nimittäin "d.m.yyyy".
-var latestDateEn;																							// Englannin vastaava on olemassa, mutta sen määrääminen onkin hankalampaa.
-	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]	// Kuukausi-array, jossa i. alkio on i+1:nnen kuukauden nimi kaikilla i = 0, 1, ..., 11.
-	latestDateEn = "on " + months[latest.getMonth()] + " " + latest.getDate() + ", " + latest.getFullYear();		// Nyt englanninkielinen päivämäärä on "kuukaudennimi d, yyyy". Esimerkiksi November 5, 1605.
-
-// Jos viimeksi muokattu tänään, ilmaistaan päivän sijaan "tänään".
-var latestAsMs = latest.valueOf() - (latest.getMilliseconds() + 1000 * (latest.getSeconds() + 60 * (latest.getMinutes() + 60 * latest.getHours())));	// latestAsMs on viimeisen muokkauksen päivämäärä millisekunteina miinus tarkempi kellonaika
-var todayAsMs = today.valueOf() - (today.getMilliseconds() + 1000 * (today.getSeconds() + 60 * (today.getMinutes() + 60 * today.getHours())));			// todayAsMs on sama mutta tälle päivälle
-if (todayAsMs - latestAsMs == 0) {																														// Ja jos niiden erotus on nolla eli ne ovat sama luku, niin...
-	latestDateFi = "tänään";																															// ... suomeksi sanotaan, että "tänään"...
-	latestDateEn = "today";																																// ... ja enkuksi, että "today".
-} else if (todayAsMs - latestAsMs == 1) {																												// Jos niiden erotus on yksi eli tänään on yksi päivä viime muokkauksen jälkeen, niin...
-	latestDateFi = "eilen";																																// ... suomeksi sanotaan, että "eilen"...
-	latestDateEn = "yesterday";																															// ... ja enkuksi, että "yesterday".
-}
-// Implementointi, kun sivu ladataan. Selaa alaspäin.
-
-
-
-/*******************************************************************
- * Nyt suoritetaan kamaa (kun sivu on latautunut loppuun, kaiketi) */
+/***************
+ * Muuta kamaa */
 
 $("header").ready(function() {
-	setTimeout(headB(), 500);						// Headerin elementtien leveytys
+	setTimeout(headB(), 500);						// Headerin elementtien leveytys, kun header ladataan
 })
 
-$(window).resize(headB());
+$(window).resize(headB());							// Jos ikkunan kokoa muutetaan, headerin leveys lasketaan uusiksi.
 
 
 /* Matematiikkaa sisältävien elementtien näkyminen */
@@ -165,12 +170,12 @@ for (var i = 0; i < $("figure").length; i++) {
 
 $("figure").each(function(){												// Jokaiselle figurelle oma funktionsa.
 	if($(this).outerWidth(true) >= $(this).parent().width()) {				// Jos figure on leveämpi kuin containerinsa, niin...
-		var quot = $(this).parent().width() / $(this).outerWidth();		// ... lasketaan, miten iso osa container on figuresta.
-		var diff = $(this).outerWidth() - $(this).parent().width();		// Ja samoin figuren ja containerin leveyksien erotus.
+		var quot = $(this).parent().width() / $(this).outerWidth();			// ... lasketaan, miten iso osa container on figuresta.
+		var diff = $(this).outerWidth() - $(this).parent().width();			// Ja samoin figuren ja containerin leveyksien erotus.
 		diff /= 2;
 		$(this).css({
 			"transform": "scale(" + quot + "," + quot + ")",				// Ja sitten skaaalataan sitä figurea, niin, että sen leveys on se containerin leveys. :3
-			"margin": "0 0 0 -" + diff + "px",											// ... ja sitten marginaalit uusiksi.
+			"margin": "0 0 0 -" + diff + "px",								// ... ja sitten marginaalit uusiksi.
 		});
 	}
 });
@@ -178,15 +183,7 @@ $("figure").each(function(){												// Jokaiselle figurelle oma funktionsa.
 
 /* Copyrightin vuosi */
 
-$(".year").append(today.getFullYear());
-
-
-/* Sivun viimeisin päivitysaika esille etusivulle */
-
-$("p[lang='fi'] > .lmdate").append(latestDateFi);
-$("p[lang='en'] > .lmdate").append(latestDateEn);
-$("p[lang='fi'] > .lmtime").append(latestTimeFi);
-$("p[lang='en'] > .lmtime").append(latestTimeEn);
+$(".year").append(today.getFullYear());			// Elementti, jonka class on "year", sisältää nyt tämänhetkisen vuoden.
 
 
 /* Portfolion url */
@@ -200,7 +197,12 @@ var url1 = "http://validator.w3.org/check?uri=" + window.location.href;			// Muu
 $("#validhtml").attr("href", url1);												// Validator-linkkielementin href-attribuutti on yllä mainittu url
 
 
-	/* Main-elementin korkeus (tarpeeton tällä hetkellä) */
+
+
+
+/***********************************************************************************************************************************************************************************/
+
+	/* Main-elementin korkeus (tarpeeton tällä hetkellä) [Ei käytössä] */
 /*
 	var h = [];														// h on tyhjä array
 	for (var i = 0; i < 4; i++) {									// i käy nollasta kolmeen
@@ -211,7 +213,7 @@ $("#validhtml").attr("href", url1);												// Validator-linkkielementin href
 	$("main").height(maxHeight);									// mainin korkeudeksi maxHeight
 */
 
-	/* Sivunvaihdot (toteutettu tehokkaammin alhaalta löytyvänä funktiona) */
+	/* Sivunvaihdot (toteutettu tehokkaammin ylhäältä löytyvänä funktiona) [Ei käytössä] */
 /*
 	$("#vaihto1").click(function() {
 		$(".box").fadeOut(800, "linear");
