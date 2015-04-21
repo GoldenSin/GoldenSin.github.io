@@ -8,7 +8,7 @@ $(document).ready(function() {							// Sivun latautuminen, ennen kuin mitään 
  * Globaaleja muuttujia */
 
 var today = new Date();									// Tämän päivän päivämäärä on muuttuja "today".
-var latest = new Date(document.lastModified);			// Viimeksi muokattu päivämäärä on muuttuja "latest".
+var latest = new Date(document.lastModified);			// Päivämäärä, jolloin index.html-tiedostoa on viimeksi muokattu, on muuttuja "latest".
 var menuNapit = $("body > header nav a");				// Menunapit tallennettu muuttujaan.
 
 
@@ -24,7 +24,7 @@ var latestTimeEn;										// Englanninkielinen aikamuoto on myös asia.
 	if (min < 10) {										// Jos kello on vähemmän kuin kymmenen yli, niin...
 		min = "0" + min;								// ... minuuttien edessä on nolla. Vrt. 9.05 vs. 9.5 (eng. 9:05 vs. 9:5)
 	}
-	latestTimeFi = h + "." + min;						// latestTimeFi on suomalainen aikamuoto. Eli h.mm
+	latestTimeFi = h + "." + min;						// latestTimeFi on suomalainen aikamuoto. Eli (h)h.mm
 	if (h > 12) {										// Mikäli kello on enemmän kuin kaksitoista päivällä, niin...
 		latestTimeEn = (h - 12) + ":" + min + " PM";	// ... otetaan 12 tunnin kello 24 tunnin kellon sijaan (eli vähennetään 24 tunnin ajasta 12, jolloin saadaan oikea aika). Ja PM perään (koska iltapäivä).
 	} else {											// Muulloin...
@@ -32,7 +32,7 @@ var latestTimeEn;										// Englanninkielinen aikamuoto on myös asia.
 	}
 
 // Ja aika on valmis. Nyt päiväys:
-var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();			// Suomalainen päiväysmuoto (joka on helppo). Nimittäin "d.m.yyyy".
+var latestDateFi = latest.getDate() + "." + (latest.getMonth() + 1) + "." + latest.getFullYear();			// Suomalainen päiväysmuoto (joka on helppo). Nimittäin "(d)d.(m)m.yyyy".
 var latestDateEn;																							// Englannin vastaava on olemassa, mutta sen määrääminen onkin hankalampaa.
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]	// Kuukausi-array, jossa i. alkio on i+1:nnen kuukauden nimi kaikilla i = 0, 1, ..., 11.
 	latestDateEn = "on " + months[latest.getMonth()] + " " + latest.getDate() + ", " + latest.getFullYear();		// Nyt englanninkielinen päivämäärä on "kuukaudennimi d, yyyy". Esimerkiksi November 5, 1605.
