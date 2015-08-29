@@ -1,0 +1,123 @@
+/* ##########
+   # Fontit #
+   ########## */
+
+@font-face
+	{
+		font-family:	"Feira da Fruta";
+		src:			url("../fonts/Feira_da_Fruta.eot");
+		src:			url("../fonts/Feira_da_Fruta.otf");
+		src:			url("../fonts/Feira_da_Fruta.svg");
+		src:			url("../fonts/Feira_da_Fruta.ttf");
+		src:			url("../fonts/Feira_da_Fruta.woff");
+	}
+
+@font-face
+	{
+		font-family:	"HACKED";
+		src:			url("../fonts/HACKED.eot");
+		src:			url("../fonts/HACKED.otf");
+		src:			url("../fonts/HACKED.svg");
+		src:			url("../fonts/HACKED.ttf");
+		src:			url("../fonts/HACKED.woff");
+	}
+
+@font-face
+	{
+		font-family:	"Fire of Ysgard";
+		src:			url("../fonts/Fire_of_Ysgard/Fire_of_Ysgard.eot");
+		src:			url("../fonts/Fire_of_Ysgard/Fire_of_Ysgard.otf");
+		src:			url("../fonts/Fire_of_Ysgard/Fire_of_Ysgard.svg");
+		src:			url("../fonts/Fire_of_Ysgard/Fire_of_Ysgard.ttf");
+		src:			url("../fonts/Fire_of_Ysgard/Fire_of_Ysgard.woff");
+	}
+
+
+	/* Computer Modern Unicode */
+
+@font-face {font-family: "CMU Bright";		src: url("../fonts/Bright/cmunbmr.eot");
+											src: url("../fonts/Bright/cmunbmr.otf");
+											src: url("../fonts/Bright/cmunbmr.svg");
+											src: url("../fonts/Bright/cmunbmr.ttf");
+											src: url("../fonts/Bright/cmunbmr.woff");													}
+@font-face {font-family: "CMU Bright";		src: url("../fonts/Bright/cmunbsr.eot");
+											src: url("../fonts/Bright/cmunbsr.otf");
+											src: url("../fonts/Bright/cmunbsr.svg");
+											src: url("../fonts/Bright/cmunbsr.ttf");
+											src: url("../fonts/Bright/cmunbsr.woff");		font-weight: bold;							}
+@font-face {font-family: "CMU Bright";		src: url("../fonts/Bright/cmunbbx.eot");
+											src: url("../fonts/Bright/cmunbbx.otf");
+											src: url("../fonts/Bright/cmunbbx.svg");
+											src: url("../fonts/Bright/cmunbbx.ttf");
+											src: url("../fonts/Bright/cmunbbx.woff");		font-weight: bolder;						}
+@font-face {font-family: "CMU Bright";		src: url("../fonts/Bright/cmunbmo.eot");
+											src: url("../fonts/Bright/cmunbmo.otf");
+											src: url("../fonts/Bright/cmunbmo.svg");
+											src: url("../fonts/Bright/cmunbmo.ttf");
+											src: url("../fonts/Bright/cmunbmo.woff");								font-style: oblique;}
+@font-face {font-family: "CMU Bright";		src: url("../fonts/Bright/cmunbso.eot");
+											src: url("../fonts/Bright/cmunbso.otf");		
+											src: url("../fonts/Bright/cmunbso.svg");		
+											src: url("../fonts/Bright/cmunbso.ttf");		
+											src: url("../fonts/Bright/cmunbso.woff");		font-weight: bold;		font-style: oblique;}
+@font-face {font-family: "CMU Bright";		src: url("../fonts/Bright/cmunbxo.eot");
+											src: url("../fonts/Bright/cmunbxo.otf");		
+											src: url("../fonts/Bright/cmunbxo.svg");		
+											src: url("../fonts/Bright/cmunbxo.ttf");		
+											src: url("../fonts/Bright/cmunbxo.woff");		font-weight: bolder;	font-style: oblique;}
+
+@font-face {font-family: "CMU Concrete";	src: url("../fonts/Concrete/cmunorm.ttf");													}
+@font-face {font-family: "CMU Concrete";	src: url("../fonts/Concrete/cmunobx.ttf");		font-weight: bold;							}
+@font-face {font-family: "CMU Concrete";	src: url("../fonts/Concrete/cmunoti.ttf"); 							font-style: italic;		}
+@font-face {font-family: "CMU Concrete";	src: url("../fonts/Concrete/cmunobi.ttf");		font-weight: bold;		font-style: italic;	}
+
+@font-face {font-family: "CMU Sans Serif";	src: url("../fonts/Sans_Serif/cmunss.eot");
+											src: url("../fonts/Sans_Serif/cmunss.otf");
+											src: url("../fonts/Sans_Serif/cmunss.svg");
+											src: url("../fonts/Sans_Serif/cmunss.ttf");
+											src: url("../fonts/Sans_Serif/cmunss.woff");												}
+@font-face {font-family: "CMU Sans Serif";	src: url("../fonts/Sans_Serif/cmunsx.eot");
+											src: url("../fonts/Sans_Serif/cmunsx.otf");	
+											src: url("../fonts/Sans_Serif/cmunsx.svg");	
+											src: url("../fonts/Sans_Serif/cmunsx.ttf");	
+											src: url("../fonts/Sans_Serif/cmunsx.woff");	font-weight: bold;							}
+@font-face {font-family: "CMU Sans Serif";	src: url("../fonts/Sans_Serif/cmunsi.eot");
+											src: url("../fonts/Sans_Serif/cmunsi.otf");							
+											src: url("../fonts/Sans_Serif/cmunsi.svg");							
+											src: url("../fonts/Sans_Serif/cmunsi.ttf");							
+											src: url("../fonts/Sans_Serif/cmunsi.woff");							font-style: oblique;}
+@font-face {font-family: "CMU Sans Serif";	src: url("../fonts/Sans_Serif/cmunso.eot");
+											src: url("../fonts/Sans_Serif/cmunso.otf");	
+											src: url("../fonts/Sans_Serif/cmunso.svg");	
+											src: url("../fonts/Sans_Serif/cmunso.ttf");	
+											src: url("../fonts/Sans_Serif/cmunso.woff");	font-weight: bold;		font-style: oblique;}
+
+@font-face {font-family: "CMU Serif";		src: url("../fonts/Serif/cmunrm.eot");
+											src: url("../fonts/Serif/cmunrm.otf");														
+											src: url("../fonts/Serif/cmunrm.svg");														
+											src: url("../fonts/Serif/cmunrm.ttf");														
+											src: url("../fonts/Serif/cmunrm.woff");														}
+@font-face {font-family: "CMU Serif";		src: url("../fonts/Serif/cmunbx.eot");
+											src: url("../fonts/Serif/cmunbx.otf");			
+											src: url("../fonts/Serif/cmunbx.svg");			
+											src: url("../fonts/Serif/cmunbx.ttf");			
+											src: url("../fonts/Serif/cmunbx.woff");			font-weight: bold;							}
+@font-face {font-family: "CMU Serif";		src: url("../fonts/Serif/cmunti.eot");
+											src: url("../fonts/Serif/cmunti.otf"); 								
+											src: url("../fonts/Serif/cmunti.svg"); 								
+											src: url("../fonts/Serif/cmunti.ttf"); 								
+											src: url("../fonts/Serif/cmunti.woff"); 								font-style: italic;	}
+@font-face {font-family: "CMU Serif";		src: url("../fonts/Serif/cmunbi.eot");
+											src: url("../fonts/Serif/cmunbi.otf");			
+											src: url("../fonts/Serif/cmunbi.svg");			
+											src: url("../fonts/Serif/cmunbi.ttf");			
+											src: url("../fonts/Serif/cmunbi.woff");			font-weight: bold;		font-style: italic;	}
+
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmuntt.ttf");													}
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmuntb.ttf");		font-weight: bold;							}
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmunit.ttf");								font-style: italic;	}
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmuntx.ttf");		font-weight: bold;		font-style: italic;	}
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmunbtl.ttf");	font-weight: lighter;						}
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmunst.ttf");								font-style: oblique;}
+@font-face {font-family: "CMU Typewriter";	src: url("../fonts/Typewriter/cmunbto.ttf");	font-weight: lighter;	font-style: oblique;}
+

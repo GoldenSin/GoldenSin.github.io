@@ -1,0 +1,669 @@
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   %% Portfolio-sivun tyylit (CSS) %%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/***********************************************************************************************************/
+
+
+/* ##############################
+   # Nollaus ja muu formatointi #
+   ############################## */
+
+* {
+	border:				0;
+	margin:				0;
+	padding:			0;
+	vertical-align:		baseline;
+}
+
+article, aside, figure, footer, header, main, nav, section {display: block;}
+
+
+body [lang="en"]:not(.cv) {display: none;} /* Oletuskieli fi */
+
+nav#social a, #fright a, .cv .dl, blockquote, #fleft a {background-image: url("../images/sprite.png");}	/* Sprite-kuva on taustana n‰ill‰ elementeill‰ */
+
+
+
+/* ##################
+   # Tekstimuotoilu #
+   ################## */
+
+p, ul, ol, blockquote {
+	text-align: justify;
+	font-size:	100%;
+	margin:		20px 0 0;
+}
+
+ul, ol {
+	list-style-type:		square;
+	margin-left:			20px;
+}
+
+p + ul, p + ol {margin-top: 0;}
+
+h1 {
+	border-bottom-width:			3px;
+	border-bottom-style:			solid;
+	border-radius:					3px;
+	font-family:					"Fire of Ysgard";
+	font-size:						350%;
+	font-weight:					normal;
+	line-height:					56px;
+	max-width:						100%;
+	margin:							0 auto 1px;
+	text-align:						center;
+}
+
+@media screen and (max-width: 640px) {			/* Jos n‰yttˆ on kovin pieni, otsikkofontti n‰ytt‰‰ ylisuurelta. */
+	h1 {font-size: 200%;}						/* Siisp‰ pienennet‰‰n sit‰. :) */
+}
+
+h2 {
+	border-bottom:					2px solid;
+	display:						block;
+	font-family:					"CMU Serif";
+	font-size:						180%;
+	font-style:						italic;
+	font-variant:					small-caps;
+	font-weight:					normal;
+	margin:							20px 0 0;
+	width:							100%;
+}
+
+h3 {
+	display:				block;
+	font-family:			"CMU Concrete";
+	font-size:				130%;
+	font-weight:			normal;
+	margin:					20px 0 -20px;
+	width:					100%;
+}
+
+h4 {
+	display:		block;
+	font-size:		100%;
+	font-weight:	bold;
+	margin:			30px 0 -10px;
+	width:			100%;
+}
+
+a, a:link, a:visited {
+	cursor:							pointer;
+	text-decoration:				none;
+}
+
+a:hover, a:active {text-decoration: underline;}
+
+p > a, p > a:link, p > a:visited {text-decoration: underline;}
+
+figure {
+	border-style:		solid;
+	border-width:		1px;
+	box-sizing:			border-box;
+	margin:				20px 13px 3px;
+	max-width:			100%;
+	padding:			1px;
+}
+
+figure.left {
+	float: left;
+	margin-left: 0;
+}
+
+figure.right {
+	float: right;
+	margin-right: 0;
+}
+
+figure.album {
+	float: left;
+	margin: 20px 0;
+	width: 100%;
+}
+
+figure > img {
+	cursor: zoom-in;
+	max-width: 100%;
+}
+
+figure.album img {
+	border: 2px solid rgba(0,0,0,0);
+	box-sizing: inherit;
+	float: left;
+	margin: 0;
+	width: 33.3%;
+}
+
+figcaption {
+	border-color:	inherit;
+	border-style:	solid;
+	border-width:	1px 0 0;
+	font-size:		90%;
+	font-style:		italic;
+	margin:			-1px 10px 0;
+	padding-top:	3px;
+	text-align:		center;
+}
+
+img {
+	user-select:			none;	/* N‰ytt‰‰ rumalta, jos/kun k‰ytt‰j‰ valitsee kuvan ja sen selction-v‰riksi tulee sininen, vaikka selectionin v‰rit ovat muuten ihan erilaiset. :I */
+	-moz-user-select:		none;
+	-webkit-user-select:	none;
+	-ms-user-select:		none;
+	display:				block;
+}
+
+.kaava {visibility: hidden;}
+
+blockquote {
+	background-position:	-240px 0;
+	background-repeat:		no-repeat;
+	font-style:				italic;
+	padding-left:			60px;
+}
+
+
+
+/* ############
+   # Rakenne  #
+   ############ */
+
+body {
+	background-color:				#9E0200;
+	color:							#190501;
+	font-family:					"CMU Serif", "Times New Roman", serif;
+	font-size:						20px;
+}
+
+
+/* Tyˆpˆyt‰version ominaisuuksia (n‰ytˆn leveys yli 960 px) */
+@media screen and (min-width: 960px) {
+	* {											/* Kaikki animoitu :3 */
+		transition-property:	all;
+		transition-duration:	1s;
+		-webkit-transition-property:	all;
+		-webkit-transition-duration:	1s;
+		-moz-transition-property:	all;
+		-moz-transition-duration:	1s;
+		-o-transition-property:	all;
+		-o-transition-duration:	1s;
+	}
+
+	body {min-height: 101vh;}
+
+	header, footer {
+		border-style:					solid;
+		border-width:					5px 0;
+		position:						fixed;
+		width:							100%;
+		z-index:						10;
+	}
+
+	header {
+		height: 100px;
+		top: -5px;
+	}
+
+	footer {
+		bottom: -5px;
+		height: 60px;
+	}
+
+	footer p {
+		font-family: "CMU Sans Serif", "Times New Roman";
+		font-size: 80%;
+		height: 20px;
+		line-height: 20px;
+		margin: 20px 0;
+		text-align: center;
+	}
+
+	header > nav {
+		font-size:			130%;
+		font-variant:		small-caps;
+		line-height:		40px;
+		margin:				auto;
+		overflow:			hidden;
+		text-align:			center;
+	}
+	
+	header > nav > a, .nobr {word-break: keep-all;}
+
+	main {
+		margin:		100px auto /*calc(50% - 480px)*/;
+		width:		960px;
+		z-index:	1;
+	}
+
+	.box {
+		border:	5px solid;
+		border-radius: 5px;
+		clear: both;
+		margin-bottom:	80px;
+		min-height:	120px;
+		padding: 10px;
+		transition:				none;
+		-webkit-transition:		none;
+		-moz-transition:		none;
+		-o-transition:			none;
+	}
+
+	.box:first-child {
+		float:			left;
+		margin-left:	145px;
+		margin-top:		20px;
+		width:			640px;
+	}
+
+	.box:nth-child(2) {
+		float:			right;
+		margin-top:		120px;
+		width:			520px;
+	}
+
+	.box:nth-child(3) {
+		float:			left;
+		margin-top:		200px;
+		width:			520px;
+	}
+
+	.box:nth-child(4) {
+		float:			right;
+		margin-right:	30px;
+		margin-top:		60px;
+		width:			720px;
+	}
+
+	.box:nth-child(5) {
+		float:			right;
+		margin-right:	120px;
+		margin-top:		160px;
+		width:			480px;
+	}
+
+	#fleft, #fright, #fmiddle {
+		float: left;
+		height: 100%;
+	}
+
+	#fmiddle {width: 20%;}
+	#fleft, #fright {width: 40%;}
+	
+	#bottom {					/* IE perkele mikset osaa mit‰‰n */
+		float: left;
+		height: 0;
+		padding: 1px 0 0 0;
+		width: 100%;
+	}
+
+}
+
+
+/* Mobiiliversion tweakkauksia (n‰ytˆn leveys alle 960 px) */
+@media screen and (max-width: 960px) {
+	body {
+		background-image:		url("../images/bg132.png");
+		background-position:	center 0;
+		background-size:		100%;
+		background-repeat:		repeat-y;
+		overflow-x:				hidden;
+	}
+
+	#parallaxbg {display: none;}
+
+	main {
+		overflow-x:	hidden;
+		position:	relative;
+		width:		100%;
+	}
+
+	.box {
+		margin:		10px 1%;
+		padding:	10px 2%;
+		width:		94%;
+	}
+
+	header > nav {
+		font-variant:	small-caps;
+		font-size:		120%;
+		line-height:	40px;
+		text-align:		center;
+	}
+
+	footer > div {margin: auto;}
+
+	#fleft {
+		height: 40px;
+		width: 144px;
+	}
+
+	#fright {
+		height: 64px;
+		width: 156px;
+	}
+
+	#fmiddle {
+		height: 1em;
+		width: 100%;
+	}
+
+	footer p {text-align: center;}
+
+}
+
+
+header > nav > a {
+	margin:							0 14px;
+	transition-duration:			300ms;
+	-webkit-transition-duration:	300ms;
+	-moz-transition-duration:		300ms;
+	-o-transition-duration:			300ms;
+}
+
+#social {
+	border-style:	solid;
+	border-width:	1px 0;
+	margin:			10px auto 4px;
+	min-height:		64px;
+	padding:		4px 0;
+	width:			512px;
+}
+
+@media screen and (max-width: 384px) {
+	#social {
+		float: left;
+		max-width: 100%;
+	}
+}
+
+nav#social a, #fright a {
+	box-shadow:						0 0 2px #000000;
+	display:						block;
+	float:							left;
+	height:							60px;
+	margin:							2px;
+	transition-duration:			200ms;
+	-webkit-transition-duration:	200ms;
+	-moz-transition-duration:		200ms;
+	-o-transition-duration:			200ms;
+	transform:						scale(0.9,0.9);
+	-webkit-transform:				scale(0.9,0.9);
+	-ms-transform:					scale(0.9,0.9);
+	-moz-transform:					scale(0.9,0.9);
+	-o-transform:					scale(0.9,0.9);
+	width:							60px;
+}
+
+nav#social a:hover {
+	transform:			scale(1,1);
+	-webkit-transform:	scale(1,1);
+	-ms-transform:		scale(1,1);
+	-moz-transform:		scale(1,1);
+	-o-transform:		scale(1,1);
+}
+
+#soundcloud			{background-color: rgba(255, 102,   0, 1); background-position:    0     0;}
+#googleplus			{background-color: rgba(209,  72,  54, 1); background-position:  -60px   0;}
+#linkedin			{background-color: rgba(  0, 127, 177, 1); background-position: -120px   0;}
+#steam				{background-color: rgba(  0,   0,   0, 1); background-position:    0   -60px;}
+#twitter			{background-color: rgba(  0, 172, 237, 1); background-position:  -60px -60px;}
+#wordpress			{background-color: rgba( 33, 117, 155, 1); background-position: -120px -60px;}
+#github				{background-color: rgba( 65, 131, 196, 1); background-position: -180px -60px;}
+#facebook			{background-color: rgba( 59,  89, 152, 1); background-position: -180px -120px;}
+
+#soundcloud:hover	{background-color: rgba(255, 102,   0, 0.8);}
+#googleplus:hover	{background-color: rgba(209,  72,  54, 0.8);}
+#linkedin:hover		{background-color: rgba(  0, 127, 177, 0.8);}
+#steam:hover		{background-color: rgba(  0,   0,   0, 0.8);}
+#twitter:hover		{background-color: rgba(  0, 172, 237, 0.8);}
+#wordpress:hover	{background-color: rgba( 33, 117, 155, 0.8);}
+#github:hover		{background-color: rgba( 65, 131, 196, 0.8);}
+#facebook:hover		{background-color: rgba( 50,  89, 152, 0.8);}
+
+#fright a {
+	border-radius: 6px;
+	border-style: solid;
+	border-width: 4px;
+	margin: -4px -8px;
+	box-shadow: 0 0 5px #000000;
+	transform: scale(0.5,0.5);
+	-webkit-transform: scale(0.5,0.5);
+	-ms-transform: scale(0.5,0.5);
+	-moz-transform: scale(0.5,0.5);
+	-o-transform: scale(0.5,0.5);
+}
+
+#fright a:hover {
+	transform: scale(0.8,0.8);
+	-webkit-transform: scale(0.8,0.8);
+	-ms-transform: scale(0.8,0.8);
+	-moz-transform: scale(0.8,0.8);
+	-o-transform: scale(0.8,0.8);
+}
+
+#html5				{background-color: rgb(240, 101,  41); border-color: rgb(240, 101,  41); background-position: 0 -120px;}
+#css3				{background-color: rgb(  0, 146, 191); border-color: rgb(  0, 146, 191); background-position: -60px -120px;}
+#jquery				{background-color: rgb(  8, 103, 171); border-color: rgb(  8, 103, 171); background-position: -120px -120px;}
+
+#fleft a {
+	border-radius: 6px;
+	box-shadow: 0 0 5px #000000;
+	display: block;
+	float: right;
+	height: 60px;
+	margin: -4px -12px;
+	opacity: 0.7;
+	transform: scale(0.5,0.5);
+	-webkit-transform: scale(0.5,0.5);
+	-ms-transform: scale(0.5,0.5);
+	-moz-transform: scale(0.5,0.5);
+	-o-transform: scale(0.5,0.5);
+	transition-duration:	200ms;
+	-webkit-transition-duration:	200ms;
+	-moz-transition-duration:	200ms;
+	-o-transition-duration:	200ms;
+	width: 95px;
+}
+
+#fleft a:hover {
+	opacity: 1;
+	transform: scale(0.6,0.6);
+	-webkit-transform: scale(0.6,0.6);
+	-ms-transform: scale(0.6,0.6);
+	-moz-transform: scale(0.6,0.6);
+	-o-transform: scale(0.6,0.6);
+}
+
+#finnish			{background-position: center bottom;}
+#english			{background-position: left bottom;}
+
+
+
+/* #########
+   # Sivut #
+   ######### */
+
+.mie {
+	background-repeat:	no-repeat;
+	clear:				both;
+	float:				right;
+	height:				20px;
+	margin:				0 3px 0;
+}
+
+#validhtml {
+	background:			url("../images/html5-badge-h-css3-graphics-multimedia-semantics.png") right top no-repeat;
+	display:			block;
+	height:				64px;
+	margin:				5px auto;
+	transform:			scale(0.9,0.9);
+	-webkit-transform:	scale(0.9,0.9);
+	-ms-transform:		scale(0.9,0.9);
+	-moz-transform:		scale(0.9,0.9);
+	-o-transform:		scale(0.9,0.9);
+	transition:			all 100ms linear;
+	-webkit-transition:	all 100ms linear;
+	-moz-transition:	all 100ms linear;
+	-o-transition:		all 100ms linear;
+	width:				230px;
+}
+
+#validhtml:hover {
+	transform: scale(1,1);
+	-webkit-transform: scale(1,1);
+	-ms-transform: scale(1,1);
+	-moz-transform: scale(1,1);
+	-o-transform: scale(1,1);
+}
+
+.cv {
+	line-height: 60px;
+	margin-top: 20px;
+}
+
+.cv .dl {
+	background-position: -180px 0;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5) inset, 0 0 5px rgba(255,255,255,0.5);
+	float: left;
+	height: 60px;
+	margin-right: -5px;
+	transform: scale(0.3,0.3);
+	-webkit-transform: scale(0.3,0.3);
+	-ms-transform: scale(0.3,0.3);
+	-moz-transform: scale(0.3,0.3);
+	-o-transform: scale(0.3,0.3);
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+	-moz-transition: all 200ms linear;
+	-o-transition: all 200ms linear;
+	width: 60px;
+	vertical-align: middle;
+}
+
+.cv:hover .dl {
+	transform: scale(0.4,0.4);
+	-webkit-transform: scale(0.4,0.4);
+	-ms-transform: scale(0.4,0.4);
+	-moz-transform: scale(0.4,0.4);
+	-o-transform: scale(0.4,0.4);
+}
+
+.soundcloud {
+	width: 100%;
+	margin: 20px 0 0;
+}
+
+
+
+/* #################
+   # Imgage Viewer #
+   ################# */
+
+.imgview {
+	background: rgba(0,0,0,0.9);
+	display: none;
+	height: 100vh;
+	left: 0;
+	position: fixed;
+	top: 0;
+	transition:				none;
+	-webkit-transition:		none;
+	-moz-transition:		none;
+	-o-transition:			none;
+	width: 100%;
+	z-index: 100;
+}
+
+.imgview img {
+	background: rgba(0,0,0,0.5);
+	border: 3px solid #000000;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin: auto;
+	max-height: 100vh;
+	max-width: 100%;
+	padding: 3px;
+	position: relative;
+	transition:				none;
+	-webkit-transition:		none;
+	-moz-transition:		none;
+	-o-transition:			none;
+}
+
+.imgview a.dismiss {
+	color: rgba(255,255,255,0.5);
+	display: block;
+	font-family: "CMU Sans Serif";
+	font-size: 3em;
+	margin: 1vh 1% 0 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+	-moz-transition: all 200ms linear;
+	-o-transition: all 200ms linear;
+}
+
+.imgview a.dismiss:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+
+
+/* #########################
+   # Parallax Scrolling BG #
+   ######################### */
+	
+#parallaxbg {
+	background-image:		url("../images/bg132.png");
+	background-position:	center 0;
+	background-repeat:		repeat-y;
+	background-size:		100%;
+	height:					500vh;
+	left:					0;
+	position:				fixed;
+	top:					0;
+	width:					100%;
+	z-index:				-1;
+	transition:				none;
+	-webkit-transition:		none;
+	-moz-transition:		none;
+	-o-transition:			none;
+}
+
+
+
+/* ####################################################################
+   # Jos sivu ei ole latautunut t‰ysin, niin odotusilmoitus n‰ytet‰‰n #
+   #################################################################### */
+
+#odotas {
+	padding: 5px;
+	max-width: 100%;
+	width: 240px;
+	border-radius: 10px;
+	font-family: "Times New Roman";
+	text-align: center;
+	transition:				none;
+	-webkit-transition:		none;
+	-moz-transition:		none;
+	-o-transition:			none;
+	border-width: 6px;
+	border-style: solid;
+	box-sizing: border-box;
+}
+@media screen and (min-width: 960px) {
+	#odotas {
+		position: absolute;
+		top: 33vh;
+		left: calc(50% + 350px);
+	}
+}
+@media screen and (max-width: 960px) {
+	#odotas {
+		width: 100%;
+	}
+}
