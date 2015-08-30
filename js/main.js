@@ -215,14 +215,11 @@ $(window).scroll(function() {
 setTimeout(function() {
 	if (document.readyState != "complete") {
 		$("header").after("<div id='odotas'><span lang='fi'>Odotas pikku hetki, sivu näemmä vielä latautuu. Pitäisi sen kohta olla valmis, mokoman laiskurin.</span><span lang='en'>Wait a bit longer, will you? The bloody slob of a page seems to be still loading.</span></div>");
-		var chkReadyState = setInterval(function() {
-			if (document.readyState == "complete") {
-				clearInterval(chkReadyState);
-				$("#odotas").fadeOut(1500, "linear", function(){
-					$(this).delay(500).remove();
-				})
-			}
-		}, 100);
+		$(window).load(function(){
+			$("#odotas").fadeOut(1500, "linear", function(){
+				$(this).delay(500).remove();
+			});
+		});
 	}
 }, 6000);
 
